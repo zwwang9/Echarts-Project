@@ -15,12 +15,10 @@
 <meta property="og:site_name" content="易只瘦鹤的个人博客">
 <meta property="og:description" content="记录一下学习spark中的笔记，已及创建新的博客的命令。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/07/01/spark大数据内存计算笔记/QQ图片20190701102919.png">
-<meta property="og:updated_time" content="2019-07-01T02:56:44.972Z">
+<meta property="og:updated_time" content="2019-07-01T03:05:18.856Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spark大数据内存计算笔记">
 <meta name="twitter:description" content="记录一下学习spark中的笔记，已及创建新的博客的命令。">
-<meta name="twitter:image" content="http://yoursite.com/2019/07/01/spark大数据内存计算笔记/QQ图片20190701102919.png">
   
     <link rel="alternative" href="/atom.xml" title="易只瘦鹤的个人博客" type="application/atom+xml">
   
@@ -170,12 +168,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>记录一下学习spark中的笔记，已及创建新的博客的命令。</p>
-<a id="more"></a>
-<p>hexo new “spark大数据内存计算笔记”</p>
-<p><img src="//yoursite.com/2019/07/01/spark大数据内存计算笔记/QQ图片20190701102919.png" alt></p>
+        <h2 id="记录一下学习spark中的笔记，已及创建新的博客的命令。"><a href="#记录一下学习spark中的笔记，已及创建新的博客的命令。" class="headerlink" title="记录一下学习spark中的笔记，已及创建新的博客的命令。"></a>记录一下学习spark中的笔记，已及创建新的博客的命令。</h2><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;spark大数据内存计算笔记&quot;    //创建文章</span><br><span class="line"></span><br><span class="line">hexo g -d  //上传文章（在博客文章目录下）</span><br></pre></td></tr></table></figure>
 <hr>
-<p>map:进入一个元素，出来一个元素<br>FlatMap:进入一个元素，出来一个或多个<br>groupByKey:返回一个(key,iterable)<br>reduceByKey:将具有相同Key值的RDD的value进行处理<br>rdd1.join(rdd2):  例：（1，100）.join(1,200) ===&gt;  (1,(100,200))<br>                         即将相同Key的value值聚合在一起<br>mapValues:将传入的RDD的value值（不需要Key值相同）传入一个func函数,适合value值为rdd的计算<br>subtractByKey（）：类似于subtrac，删掉 RDD 中键与 other RDD 中的键相同的元素。<br>combineByKey：操作用于将RDD[K,V]转换成RDD[K,C],V的类型和C的类型可以相同。<br>函数里面含有key或value的，RDD必须是以键值对形式传入，不含的函数可以为RDD以单个元素的形式传入，也可以是键值对的形式。<br>groupBy、sortBy和groupByKey不同，排序根据传进的值进行排序。</p>
+<p><strong>map</strong>:进入一个元素，出来一个元素<br><strong>FlatMap</strong>:进入一个元素，出来一个或多个<br><strong>groupByKey</strong>:返回一个(key,iterable)<br><strong>reduceByKey</strong>:将具有相同Key值的RDD的value进行处理<br><strong>rdd1.join(rdd2)</strong>:  例：（1，100）.join(1,200) ===&gt;  (1,(100,200))<br>                         即将相同Key的value值聚合在一起<br><strong>mapValues</strong>:将传入的RDD的value值（不需要Key值相同）传入一个func函数,适合value值为rdd的计算<br><strong>subtractByKey（）</strong>：类似于subtrac，删掉 RDD 中键与 other RDD 中的键相同的元素。<br><strong>combineByKey</strong>：操作用于将RDD[K,V]转换成RDD[K,C],V的类型和C的类型可以相同。<br>函数里面含有key或value的，RDD必须是以键值对形式传入，不含的函数可以为RDD以单个元素的形式传入，也可以是键值对的形式。<br>groupBy、sortBy和groupByKey不同，排序根据传进的值进行排序。</p>
 
       
 
