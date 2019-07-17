@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | 易只瘦鹤的个人博客</title>
+  <title>jquery+css按钮的切换和图表的显示与隐藏 | 易只瘦鹤的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="易只瘦鹤的个人博客">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="这两天碰到了前端方面的知识，关于元素图表的隐藏与显示，以及选中按钮，在几个不同按钮之间切换，点击的按钮显示效果，之前的按钮还原。刚搞好这个，很开心的就来写一篇博客哈哈哈哈。">
+<meta name="keywords" content="前端小白">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jquery+css按钮的切换和图表的显示与隐藏">
+<meta property="og:url" content="http://yoursite.com/2019/07/17/jquery-css按钮的切换和图表的显示与隐藏/index.html">
 <meta property="og:site_name" content="易只瘦鹤的个人博客">
+<meta property="og:description" content="这两天碰到了前端方面的知识，关于元素图表的隐藏与显示，以及选中按钮，在几个不同按钮之间切换，点击的按钮显示效果，之前的按钮还原。刚搞好这个，很开心的就来写一篇博客哈哈哈哈。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-17T02:03:58.416Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="易只瘦鹤的个人博客">
+<meta name="twitter:title" content="jquery+css按钮的切换和图表的显示与隐藏">
+<meta name="twitter:description" content="这两天碰到了前端方面的知识，关于元素图表的隐藏与显示，以及选中按钮，在几个不同按钮之间切换，点击的按钮显示效果，之前的按钮还原。刚搞好这个，很开心的就来写一篇博客哈哈哈哈。">
   
     <link rel="alternative" href="/atom.xml" title="易只瘦鹤的个人博客" type="application/atom+xml">
   
@@ -144,36 +149,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-jquery-css按钮的切换和图表的显示与隐藏" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/17/jquery-css按钮的切换和图表的显示与隐藏/" class="archive-article-date">
-  	<time datetime="2019-07-17T01:42:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-17</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/17/jquery-css按钮的切换和图表的显示与隐藏/">jquery+css按钮的切换和图表的显示与隐藏</a>
+    <h1 class="article-title" itemprop="name">
+      jquery+css按钮的切换和图表的显示与隐藏
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/07/17/jquery-css按钮的切换和图表的显示与隐藏/" class="archive-article-date">
+  	<time datetime="2019-07-17T01:42:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong><em>这两天碰到了前端方面的知识，关于元素图表的隐藏与显示，以及选中按钮，在几个不同按钮之间切换，点击的按钮显示效果，之前的按钮还原。刚搞好这个，很开心的就来写一篇博客哈哈哈哈。</em></strong></p>
+<a id="more"></a>
+<h4 id="div模块的显示与隐藏"><a href="#div模块的显示与隐藏" class="headerlink" title="div模块的显示与隐藏"></a>div模块的显示与隐藏</h4><p>1.不同按钮显示不同的模块：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;button type=&quot;button&quot; class=&quot;trafbtn selected&quot; id=&apos;load1&apos;&gt;不同类型交通实况1&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;button type=&quot;button&quot; class=&quot;trafbtn&quot; id=&apos;load2&apos;&gt;不同类型交通实况2&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;button type=&quot;button&quot; class=&quot;trafbtn&quot; id=&apos;load3&apos;&gt;不同类型交通实况3&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;	</span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;button type=&quot;button&quot; class=&quot;trafbtn&quot; id=&apos;load4&apos;&gt;不同类型交通实况4&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>2.div模块(举出部分例子)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--第一个模块--&gt;</span><br><span class="line">&lt;div id=&quot;chart_1&quot; style=&quot;width:120%;height:200%;&quot;&gt;&lt;/div&gt; </span><br><span class="line">&lt;!--第二个模块--&gt;</span><br><span class="line">&lt;div id=&quot;chart_4&quot; style=&quot;width:120%;height:200%;&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>3.<button id>绑定点击事件：</button></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">$(&quot;#load1&quot;).click(function()&#123;</span><br><span class="line">	$(&quot;#chart_1&quot;).show(200);</span><br><span class="line">	$(&quot;#chart_2&quot;).show(200);</span><br><span class="line">	$(&quot;#chart_3&quot;).show(200);</span><br><span class="line">	$(&quot;#chart_4&quot;).hide(200);</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>$(“#id”).show(x)显示元素，x为显示的变化速度；</p>
+<p>$(“#id”).hide(x)隐藏元素，x为隐藏的变化速度。</p>
+<h4 id="不同按钮的默认选中，点击变颜色"><a href="#不同按钮的默认选中，点击变颜色" class="headerlink" title="不同按钮的默认选中，点击变颜色"></a>不同按钮的默认选中，点击变颜色</h4><p>1.上面已给出按钮的代码，这里不再贴上</p>
+<p>2.给按钮显示的class效果绑定点击事件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  $(document).on(&quot;click&quot;,&apos;button&apos;,function()&#123;</span><br><span class="line">	  $(&quot;button&quot;).each(function(n,value)&#123;</span><br><span class="line">		  $(value).removeClass(&quot;trafbtn selected&quot;);</span><br><span class="line">	  &#125;)</span><br><span class="line">	  $(this).addClass(&quot;trafbtn selected&quot;)</span><br><span class="line">  &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>“trafbtn selected”为选中按钮的样式，css文件中已给出样式。</p>
+<p><strong>大致就是这样啦，记录一下，怕自己以后忘</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -185,84 +203,147 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/17/jquery-css按钮的切换和图表的显示与隐藏/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/01/spark大数据内存计算笔记/" class="archive-article-date">
-  	<time datetime="2019-07-01T02:25:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-01</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/01/spark大数据内存计算笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">spark大数据内存计算笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/01/spark大数据内存计算笔记/">spark大数据内存计算笔记</a>
-    </h1>
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="jquery-css按钮的切换和图表的显示与隐藏" data-title="jquery+css按钮的切换和图表的显示与隐藏" data-url="http://yoursite.com/2019/07/17/jquery-css按钮的切换和图表的显示与隐藏/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2019/07/17/jquery-css按钮的切换和图表的显示与隐藏/", 
+    sourceId: "jquery-css按钮的切换和图表的显示与隐藏",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-        <div class="article-info info-on-right">
-          
-          
+  
+  <div id="SOHUCS" sid="jquery-css按钮的切换和图表的显示与隐藏"></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js"></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/30/我的第一篇博客/" class="archive-article-date">
-  	<time datetime="2019-05-30T00:43:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/30/我的第一篇博客/">我的第一篇博客</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">新的开始</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -285,8 +366,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
