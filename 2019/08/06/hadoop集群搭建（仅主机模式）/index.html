@@ -16,17 +16,17 @@
 <meta property="og:site_name" content="易只瘦鹤的个人博客">
 <meta property="og:description" content="Hadoop集群搭建（1主3从，仅主机模式）">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/master.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/图片1.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/图片2.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/图片3.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/图片4.png">
-<meta property="og:image" content="http://yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/图片5.png">
-<meta property="og:updated_time" content="2019-08-06T06:56:31.004Z">
+<meta property="og:image" content="http://yoursite.com/images/master.png">
+<meta property="og:image" content="http://yoursite.com/images/图片1.png">
+<meta property="og:image" content="http://yoursite.com/images/图片2.png">
+<meta property="og:image" content="http://yoursite.com/images/图片3.png">
+<meta property="og:image" content="http://yoursite.com/images/图片4.png">
+<meta property="og:image" content="http://yoursite.com/images/图片5.png">
+<meta property="og:updated_time" content="2019-08-06T07:02:38.479Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop集群搭建（仅主机模式）">
 <meta name="twitter:description" content="Hadoop集群搭建（1主3从，仅主机模式）">
-<meta name="twitter:image" content="http://yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/master.png">
+<meta name="twitter:image" content="http://yoursite.com/images/master.png">
   
     <link rel="alternative" href="/atom.xml" title="易只瘦鹤的个人博客" type="application/atom+xml">
   
@@ -252,23 +252,19 @@
 <p># The java implementation to use.</p>
 <p><strong>export JAVA_HOME=/usr/java/jdk1.8.0_131</strong></p>
 <p>（4） 输入 vim core-site.xml ，增加内容，注意按照自己的修改内容【IP和路径】</p>
-<blockquote>
 <configuration><br><br>​    <property><br><br>​        <name>fs.default.name</name><br><br>​        <strong><value>hdfs://192.168.62.128:9000</value></strong><br><br>​    </property><br><br>​    <property><br><br>​        <name>fs.defaultFS</name><br><br>​        <strong><value>hdfs://master:9000</value></strong><br><br>​    </property><br><br>​    <property><br><br>​        <name>hadoop.tmp.dir</name><br><br>​          <strong><value>/usr/hadoop/hadoop-2.7.3/tmp</value></strong><br><br>​        <description>store tmp file</description><br><br>​    </property><br><br>​    <property><br><br>​        <name>io.file.buffer.size</name><br><br>​        <value>131072</value><br><br>​    </property><br><br>​    <property><br><br>​        <name>hadoop.proxyuser.hadoop.hosts</name><br><br>​        <value><em></em></value><br><br>​    </property><br><br>​    <property><br><br>​        <name>hadoop.proxyuser.hadoop.groups</name><br><br>​        <value></value><br><br>​    </property><br><br></configuration>
-</blockquote>
+
 <p>（5） 输入 vim hdfs-site.xml ，增加内容，注意按照自己的修改内容【主机名和路径】，默认存3块</p>
-<blockquote>
 <configuration><br><br><property><br><br>​     <name>dfs.namenode.http-address</name><br><br>​     <strong><value>master:50070</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.namenode.secondary.http-address</name><br><br>​     <strong><value>slave01:50090</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.replication</name><br><br>​     <value>3</value><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.name.dir</name><br><br>​     <strong><value>/usr/hadoop/hadoop-2.7.3/hdfs/name</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.data.dir</name><br><br>​     <strong><value>/usr/hadoop/hadoop-2.7.3/hdfs/data</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.namenode.checkpoint.dir</name><br><br>​     <strong><value>/usr/hadoop/hadoop-2.7.3/hdfs/namesecondary</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.webhdfs.enabled</name><br><br>​     <value>true</value><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.stream-buffer-size</name><br><br>​     <value>131072</value><br><br>  </property><br><br></configuration>
-</blockquote>
+
 <p>（6） 将mapred-site.xml.template重命名为mapred-site.xml</p>
 <p>mv mapred-site.xml.template mapred-site.xml</p>
 <p>然后输入 vim mapred-site.xml ，增加内容，注意按照自己的修改内容【主机名】</p>
-<blockquote>
 <configuration><br><br> <property><br><br>​    <name>mapreduce.framework.name</name><br><br>​    <value>yarn</value><br><br> </property><br><br> <property><br><br>​    <name>mapreduce.jobhistory.address</name><br><br>​    <strong><value>master:10020</value></strong><br><br> </property><br><br> <property><br><br>​    <name>mapreduce.jobhistory.webapp.address</name><br><br>​    <strong><value>master:19888</value></strong><br><br> </property><br><br></configuration>
-</blockquote>
+
 <p>（7） 输入 vim yarn-site.xml ，增加内容，注意按照自己的修改内容【主机名】</p>
-<blockquote>
 <configuration><br><br> <property><br><br>​      <name>yarn.resourcemanager.hostname</name><br><br>​      <strong><value>master</value></strong><br><br>  </property><br><br>  <property><br><br>​       <name>yarn.nodemanager.aux-services</name><br><br>​       <value>mapreduce_shuffle</value><br><br>  </property><br><br>  <property><br><br>​       <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name><br><br>​       <value>org.apache.hadoop.mapred.ShuffleHandler</value><br><br>  </property><br><br>  <property><br><br>​       <name>yarn.resourcemanager.address</name><br><br>​       <strong><value>master:8032</value></strong><br><br>  </property><br><br>  <property><br><br>​       <name>yarn.nodemanager.resource.memory-mb</name><br><br>​       <value>8192</value><br><br>  </property><br><br></configuration>
-</blockquote>
+
 <p>（8） 输入 vim slaves ，将原有内容删除，然后增加节点主机名，即</p>
 <p>slave01</p>
 <p>slave02</p>
@@ -293,11 +289,11 @@
 <p>Slave02（DataNode, NodeManager）</p>
 <p>Slave03（DataNode, NodeManager）</p>
 <h2 id="第三部分：验证集群运行情况"><a href="#第三部分：验证集群运行情况" class="headerlink" title="第三部分：验证集群运行情况"></a><strong>第三部分：验证集群运行情况</strong></h2><p>1、 打开master浏览器，输入 master:50070 ，查看是否激活了三个节点</p>
-<p><img src="//yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/master.png" alt></p>
-<p><img src="//yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/图片1.png" alt></p>
+<p><img src="/images/master.png" alt="F://hexo/blog/source"></p>
+<p><img src="/images/图片1.png" alt="F://hexo/blog/source"></p>
 <p>此时，表示Hadoop集群已正式启动</p>
 <p>2、 输入 master:8088 ，查看mapreduce是否正常启动</p>
-<p><img src="//yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/图片2.png" alt></p>
+<p><img src="/images/图片2.png" alt="F://hexo/blog/source"></p>
 <h2 id="第四部分：简单的项目验证"><a href="#第四部分：简单的项目验证" class="headerlink" title="第四部分：简单的项目验证"></a><strong>第四部分：简单的项目验证</strong></h2><p>1、 首先准备一个txt，里面写一些单词，以空格为单位隔开，</p>
 <p>假设/home/master/workspace/ wordCountTest.txt</p>
 <p>2、 输入 </p>
@@ -307,8 +303,8 @@
 <p>（2）可以将需要计算的txt上传至hdfs中，输入</p>
 <p>4、 运行成功后，可以刷新<a href="http://master:8088/" target="_blank" rel="noopener">http://master:8088/</a>，会看到生成了一个执行进程</p>
 <p>5、 刷新<a href="http://master:50070/" target="_blank" rel="noopener">http://master:50070/</a>，可以直接查看生成的文件</p>
-<p><img src="//yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/图片3.png" alt></p>
-<p><img src="//yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/图片4.png" alt> </p>
+<p><img src="/images/图片3.png" alt="F://hexo/blog/source"></p>
+<p><img src="/images/图片4.png" alt="F://hexo/blog/source"> </p>
 <p>6、 全部结束后，关闭服务器</p>
 <p>【如果Hadoop环境变量已经配置，就不需要前面的sbin】</p>
 <p>sbin/stop-dfs.sh</p>
@@ -320,7 +316,7 @@
 <p>（4） 把其他从节点里面的tmp文件夹，里面的内容全部清空</p>
 <p>（5） 可以通过logs里面的日志查看哪里错误，查看好以后，清空logs里面的内容</p>
 <p>2、 有可能会出现集群运行后，不满足3个子节点的情况</p>
-<p><img src="//yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/图片5.png" alt> </p>
+<p><img src="/images/图片5.png" alt="F://hexo/blog/source"> </p>
 <p>要注意时间同步，时间没有同步，出现时长差距较大，就会出现掉进程现象</p>
 <p>此外，检查其他所有配置文件</p>
 <p>3、 格式化成功后，就不要再格式化第二次！！！</p>
