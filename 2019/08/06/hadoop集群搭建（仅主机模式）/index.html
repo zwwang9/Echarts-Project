@@ -6,15 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/5 | 易只瘦鹤的个人博客</title>
+  <title>hadoop集群搭建（仅主机模式） | 易只瘦鹤的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="易只瘦鹤的个人博客">
-<meta property="og:url" content="http://yoursite.com/archives/2019/05/index.html">
+  <meta name="description" content="Hadoop集群搭建（1主3从，仅主机模式）">
+<meta name="keywords" content="四台主机（不推荐）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hadoop集群搭建（仅主机模式）">
+<meta property="og:url" content="http://yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/index.html">
 <meta property="og:site_name" content="易只瘦鹤的个人博客">
+<meta property="og:description" content="Hadoop集群搭建（1主3从，仅主机模式）">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="file:///C:/Users/王/AppData/Local/Temp/ksohtml10576/wps1.jpg">
+<meta property="og:image" content="file:///C:/Users/王/AppData/Local/Temp/ksohtml10576/wps2.jpg">
+<meta property="og:image" content="file:///C:/Users/王/AppData/Local/Temp/ksohtml10576/wps3.jpg">
+<meta property="og:image" content="file:///C:/Users/王/AppData/Local/Temp/ksohtml10576/wps4.jpg">
+<meta property="og:image" content="file:///C:/Users/王/AppData/Local/Temp/ksohtml10576/wps5.jpg">
+<meta property="og:image" content="file:///C:/Users/王/AppData/Local/Temp/ksohtml10576/wps6.jpg">
+<meta property="og:updated_time" content="2019-08-06T03:20:41.482Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="易只瘦鹤的个人博客">
+<meta name="twitter:title" content="hadoop集群搭建（仅主机模式）">
+<meta name="twitter:description" content="Hadoop集群搭建（1主3从，仅主机模式）">
+<meta name="twitter:image" content="file:///C:/Users/王/AppData/Local/Temp/ksohtml10576/wps1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="易只瘦鹤的个人博客" type="application/atom+xml">
   
@@ -144,60 +156,399 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-hadoop集群搭建（仅主机模式）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/30/我的第一篇博客/" class="archive-article-date">
-  	<time datetime="2019-05-30T00:43:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/30/我的第一篇博客/">我的第一篇博客</a>
+    <h1 class="article-title" itemprop="name">
+      hadoop集群搭建（仅主机模式）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/08/06/hadoop集群搭建（仅主机模式）/" class="archive-article-date">
+  	<time datetime="2019-08-06T03:16:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Hadoop集群搭建（1主3从，仅主机模式）"><a href="#Hadoop集群搭建（1主3从，仅主机模式）" class="headerlink" title="Hadoop集群搭建（1主3从，仅主机模式）"></a><strong>Hadoop集群搭建（1主3从，仅主机模式）</strong></h1><a id="more"></a>
+<p>Master（NameNode, ResourceManager【管理NodeManager】）</p>
+<p>Slave01（SecondaryNameNode, DataNode, NodeManager）</p>
+<p>Slave02（DataNode, NodeManager）</p>
+<p>Slave03（DataNode, NodeManager）</p>
+<h2 id="第一部分：4台基本虚拟机准备工作"><a href="#第一部分：4台基本虚拟机准备工作" class="headerlink" title="第一部分：4台基本虚拟机准备工作"></a><strong>第一部分：4台基本虚拟机准备工作</strong></h2><p>1、 完成一个master虚拟机，完成jdk安装，不要装Hadoop文件，避免格式化出现错误</p>
+<p>2、 完整克隆master虚拟机3个作为从机，可分别命名为slave01,slave02,slave03</p>
+<p>3、 完成克隆后，打开所有4台虚拟机，分别运行ifconfig，记录IP地址，然后将每一台从机的IP地址进行修改（单机模式的网络配置方法），为方便记忆，可以挨着master的IP向后顺延。</p>
+<p>例如：master机器IP设置为 192.168.62.128，后面的三台从机分别为129.130.131</p>
+<p>4、 打开master虚拟机，输入vim /etc/hosts，添加IP与主机的映射</p>
+<p>例如：</p>
+<p>192.168.62.128 master</p>
+<p>192.168.62.129 slave01</p>
+<p>192.168.62.130 slave02</p>
+<p>192.168.62.131 slave03</p>
+<p>修改后保存，然后在master中进行ping slave01测试，如果可以，表示通讯正常</p>
+<p>5、 修改slave01第一个节点虚拟机。</p>
+<p>（1） 输入vim /etc/hosts，添加IP与主机的映射，例如：</p>
+<p>192.168.62.128 master</p>
+<p>192.168.62.129 slave01</p>
+<p>192.168.62.130 slave02</p>
+<p>192.168.62.131 slave03</p>
+<p>修改后保存，然后在master中进行ping master测试，如果可以，表示通讯正常</p>
+<p>（2）输入vim /etc/systemconfig/network 修改主机名</p>
+<p>​     NETWORKING=yes</p>
+<p>​     HOSTNAME=slave01</p>
+<p>（3）输入 vim /etc/udev/rules.d/70-persistent-net.rules ，删除整个eth0配置。</p>
+<p>​     然后将新生成的eth1修改为eth0</p>
+<p>​     然后复制里面新的物理地址，打开vim /etc/sysconfig/network-scripts/ifcfg-eth0</p>
+<p>​     将里面的物理地址替换</p>
+<p>DEVICE=eth0</p>
+<p>BOOTPROTO=dhcp</p>
+<p><strong>HWADDR=00:0c:29:1b:03:0e</strong></p>
+<p>IPV6INIT=yes</p>
+<p>NM_CONTROLLED=yes</p>
+<p>ONBOOT=yes</p>
+<p>TYPE=Ethernet</p>
+<p>UID=”1c3b572c-c3e9-407f-8ede-d0c6c043088b”</p>
+<p>DNS2=8.8.8.8</p>
+<p>DNS1=202.102.213.68</p>
+<p>USERCTL=no</p>
+<p>PEERDNS=yes</p>
+<p>​    （4）reboot重启，重启后输入ifconfig看是否更新为eth0，尝试ping其他虚拟机</p>
+<p>6、 修改slave02和slave03这二个节点虚拟机。同slave01</p>
+<p>7、 回到主机，在C盘中进入windows文件夹，搜索一个hosts文件，正常属于etc文件夹，然后打开hosts文件，进入编辑，添加虚拟机中的4台虚拟机IP和主机映射关系。</p>
+<p>例如：</p>
+<p>#master</p>
+<p>#    192.168.62.128       master</p>
+<p>#slave01</p>
+<p>#    192.168.62.129       slave01</p>
+<p>#slave02</p>
+<p>#    192.168.62.130       slave02</p>
+<p>#slave03</p>
+<p>#    192.168.62.131       slave03</p>
+<p>完成4台虚拟机的网卡信息、主机名、映射配置。</p>
+<h2 id="第二部分：集群搭建配置修改"><a href="#第二部分：集群搭建配置修改" class="headerlink" title="第二部分：集群搭建配置修改"></a><strong>第二部分：集群搭建配置修改</strong></h2><p>1、 ssh安装和配置(免密码配置)</p>
+<p>目的：让master可以控制3台从机，但从机不允许直接访问主机</p>
+<p>（1） 打开 master虚拟机，切换路径 cd /root/.ssh</p>
+<p>（2） 生成免密码登录。输入 ssh-keygen -t rsa ，然后4次回车，此时输入ls，就会看到一对密钥（公钥，私钥）。</p>
+<p>（3） 输入ssh-copy-id master ，第一次运行都需要输入一次自己的密码，完成后输入ls，会看到多了一个用户权限，即免密码的权限。</p>
+<p>（4） 仍然保持在master状态下，现在开始控制其他3台虚拟机，设置ssh免密权限。输入 ssh-copy-id slave01 ， 完成后进入slave01虚拟机，进入.ssh文件夹，输入ls，会看到已经生成用户权限文件。</p>
+<p>（5） 同样的方法，完成slave02和slave03的权限设置</p>
+<p>（6） 完成设置后，可以进行测试，在master状态下输入 ssh slave01，然后控制台切换至slave01，表示成功；然后输入exit表示退出</p>
+<p>2、 设置整个集群的时间每十分钟同步一次</p>
+<p>（1） 可以分别在4台机器中输入date，查看时间是否一致</p>
+<p>（2） 找一台机器作为时间服务器，即其他3台机器以该机器为单位，每隔十分钟同步一次，建议时间服务器使用master</p>
+<p>（3） 打开master虚拟机，输入rpm -qa|grep ntp 【查询时间所有套件】，正常会出现3个工具，表示正确。如果没有，需要重新安装。</p>
+<p>【rpm 命令用于管理套件】</p>
+<p>【grep（global search regular expression(RE) and print out the line，全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。】</p>
+<p>【NTP是网络时间协议(Network Time Protocol)，它是用来同步网络中各个计算机的时间的协议。】</p>
+<p>（4） 输入vim /etc/ntp.conf ，共修改三处</p>
+<p>For more information about this file, see the man pages</p>
+<p># ntp.conf(5), ntp_acc(5), ntp_auth(5), ntp_clock(5), ntp_misc(5), ntp_mon(5).</p>
+<p>driftfile /var/lib/ntp/drift</p>
+<p># Permit time synchronization with our time source, but do not</p>
+<p># permit the source to query or modify the service on this system.</p>
+<p>restrict default kod nomodify notrap nopeer noquery</p>
+<p>restrict -6 default kod nomodify notrap nopeer noquery</p>
+<p># Permit all access over the loopback interface.  This could</p>
+<p># be tightened as well, but to do so would effect some of</p>
+<p># the administrative functions.</p>
+<p>restrict 127.0.0.1</p>
+<p>restrict -6 ::1</p>
+<p># Hosts on local network are less restricted.</p>
+<p><strong>restrict 192.168.**</strong>62<strong>**.0 mask 255.255.255.0 nomodify notrap</strong></p>
+<p><strong>【删除注释，将第三位修改为主机m**</strong>aster<strong>**的第三位，最后一位0不变】</strong></p>
+<p># Use public servers from the pool.ntp.org project.</p>
+<p># Please consider joining the pool (<a href="http://www.pool.ntp.org/join.html)" target="_blank" rel="noopener">http://www.pool.ntp.org/join.html)</a>.</p>
+<p><strong>#**</strong>server 0.centos.pool.ntp.org iburst**</p>
+<p><strong>#**</strong>server 1.centos.pool.ntp.org iburst**</p>
+<p><strong>#**</strong>server 2.centos.pool.ntp.org iburst**</p>
+<p><strong>#**</strong>server 3.centos.pool.ntp.org iburst**</p>
+<p><strong>【四行注释掉】</strong></p>
+<p>#broadcast 192.168.1.255 autokey        # broadcast server</p>
+<p>#broadcastclient                        # broadcast client</p>
+<p>#broadcast 224.0.1.1 autokey            # multicast server</p>
+<p>#multicastclient 224.0.1.1              # multicast client</p>
+<p>#manycastserver 239.255.254.254         # manycast server</p>
+<p>#manycastclient 239.255.254.254 autokey # manycast client</p>
+<p># Enable public key cryptography.</p>
+<p><strong>server 127.127.1.0</strong></p>
+<p><strong>f**</strong>udge 127.127.1.0 stratum 10**</p>
+<p><strong>【增加两句话】</strong></p>
+<p>#crypto</p>
+<p>includefile /etc/ntp/crypto/pw</p>
+<p># Key file containing the keys and key identifiers used when operating</p>
+<p># with symmetric key cryptography. </p>
+<p>keys /etc/ntp/keys</p>
+<p># Specify the key identifiers which are trusted.</p>
+<p>#trustedkey 4 8 42</p>
+<p># Specify the key identifier to use with the ntpdc utility.</p>
+<p>#requestkey 8</p>
+<p># Specify the key identifier to use with the ntpq utility.</p>
+<p>#controlkey 8</p>
+<p># Enable writing of statistics records.</p>
+<p>#statistics clockstats cryptostats loopstats peerstats</p>
+<p>（5） 输入 vim /etc/sysconfig/ntpd ，增加一行代码</p>
+<p>#Drop root to id ‘ntp:ntp’ by default.</p>
+<p><strong>S**</strong>YNC_HWCLOCK=<strong>**yes</strong>  <strong>【设置时间同步】</strong></p>
+<p>OPTIONS=”-u ntp:ntp -p /var/run/ntpd.pid -g”</p>
+<p>（6） 重启时间服务器，首先查看当前状态 service ntpd status ，</p>
+<p>如果关闭，则打开时间服务器 service ntpd start</p>
+<p>打开后，设置时间每次永久开启 chkconfig ntpd on</p>
+<p>（7） 编写脚本  crontab -e</p>
+<p>【crond 是linux下用来周期性的执行某种任务或等待处理某些事件的一个守护进程，与windows下的计划任务类似，当安装完成操作系统后，默认会安装此服务 工具，并且会自动启动crond进程，crond进程每分钟会定期检查是否有要执行的任务，如果有要执行的任务，则自动执行该任务。】</p>
+<p><strong>0-59/10</strong> <strong>*</strong> <strong>*</strong> <strong>*</strong> <strong>*</strong> <strong>/**</strong>usr/sbin/ntpdate master<strong>  </strong>【设置每隔十分钟执行一次】**</p>
+<p>（8） 打开slave01，编写脚本  crontab -e</p>
+<p><strong>0-59/10</strong> <strong>*</strong> <strong>*</strong> <strong>*</strong> <strong>*</strong> <strong>/**</strong>usr/sbin/ntpdate master<strong>  </strong>【表示只和m<strong><strong>aster</strong></strong>同步】**</p>
+<p>（9） 同理，完成slave02和slave03的脚本编写</p>
+<p>（10） 关闭4台虚拟机防火墙，进行时间同步，注意防火墙不关，无法实现同步，关闭防火墙后，4台虚拟机全部重启</p>
+<p>chkconfig iptables off 【设置永久关闭】 </p>
+<p>（11） 重启后，进入slave01、slave02、slave03虚拟机，输入 /usr/sbin/ntpdate master</p>
+<p>（12） 检查master时间是否正确，如果不正确，修改master时间</p>
+<p>输入 date -s 2018-09-30  设置日期</p>
+<p>输入 date -s 10:50:30 设置时间</p>
+<p>修改完后，每隔10分钟就会同步一次时间</p>
+<p>3、 修改Hadoop配置文件</p>
+<p>（1） 设置master虚拟机，解压压缩包，安装Hadoop文件</p>
+<p>【注意：如果master已有Hadoop文件，需要先删除，否则将Hadoop向其他三个从节点发送时，会保留原有的日志等文件，格式化时会出错】</p>
+<p>（2） 假设安装路径为 /usr/hadoop/hadoop-2.7.3 ,进入该文件夹，</p>
+<p>然后输入 cd etc/hadoop 然后开始配置文件</p>
+<p>（3） 输入 vim hadoop-env.sh ，修改</p>
+<p># The java implementation to use.</p>
+<p><strong>export JAVA_HOME=/usr/java/jdk1.8.0_131</strong></p>
+<p>（4） 输入 vim core-site.xml ，增加内容，注意按照自己的修改内容【IP和路径】</p>
+<configuration><br><br>​    <property><br><br>​        <name>fs.default.name</name><br><br>​        <strong><value>hdfs://192.168.62.128:9000</value></strong><br><br>​    </property><br><br>​    <property><br><br>​        <name>fs.defaultFS</name><br><br>​        <strong><value>hdfs://master:9000</value></strong><br><br>​    </property><br><br>​    <property><br><br>​        <name>hadoop.tmp.dir</name><br><br>​          <strong><value>/usr/hadoop/hadoop-2.7.3/tmp</value></strong><br><br>​        <description>store tmp file</description><br><br>​    </property><br><br>​    <property><br><br>​        <name>io.file.buffer.size</name><br><br>​        <value>131072</value><br><br>​    </property><br><br>​    <property><br><br>​        <name>hadoop.proxyuser.hadoop.hosts</name><br><br>​        <value><em></em></value><br><br>​    </property><br><br>​    <property><br><br>​        <name>hadoop.proxyuser.hadoop.groups</name><br><br>​        <value></value><br><br>​    </property><br><br></configuration>
+
+<p>（5） 输入 vim hdfs-site.xml ，增加内容，注意按照自己的修改内容【主机名和路径】，默认存3块</p>
+<configuration><br><br><property><br><br>​     <name>dfs.namenode.http-address</name><br><br>​     <strong><value>master:50070</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.namenode.secondary.http-address</name><br><br>​     <strong><value>slave01:50090</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.replication</name><br><br>​     <value>3</value><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.name.dir</name><br><br>​     <strong><value>/usr/hadoop/hadoop-2.7.3/hdfs/name</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.data.dir</name><br><br>​     <strong><value>/usr/hadoop/hadoop-2.7.3/hdfs/data</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.namenode.checkpoint.dir</name><br><br>​     <strong><value>/usr/hadoop/hadoop-2.7.3/hdfs/namesecondary</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.webhdfs.enabled</name><br><br>​     <value>true</value><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.stream-buffer-size</name><br><br>​     <value>131072</value><br><br>  </property><br><br></configuration>
+
+<p>（6） 将mapred-site.xml.template重命名为mapred-site.xml</p>
+<p>mv mapred-site.xml.template mapred-site.xml</p>
+<p>然后输入 vim mapred-site.xml ，增加内容，注意按照自己的修改内容【主机名】</p>
+<configuration><br><br> <property><br><br>​    <name>mapreduce.framework.name</name><br><br>​    <value>yarn</value><br><br> </property><br><br> <property><br><br>​    <name>mapreduce.jobhistory.address</name><br><br>​    <strong><value>master:10020</value></strong><br><br> </property><br><br> <property><br><br>​    <name>mapreduce.jobhistory.webapp.address</name><br><br>​    <strong><value>master:19888</value></strong><br><br> </property><br><br></configuration>
+
+<p>（7） 输入 vim yarn-site.xml ，增加内容，注意按照自己的修改内容【主机名】</p>
+<configuration><br><br> <property><br><br>​      <name>yarn.resourcemanager.hostname</name><br><br>​      <strong><value>master</value></strong><br><br>  </property><br><br>  <property><br><br>​       <name>yarn.nodemanager.aux-services</name><br><br>​       <value>mapreduce_shuffle</value><br><br>  </property><br><br>  <property><br><br>​       <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name><br><br>​       <value>org.apache.hadoop.mapred.ShuffleHandler</value><br><br>  </property><br><br>  <property><br><br>​       <name>yarn.resourcemanager.address</name><br><br>​       <strong><value>master:8032</value></strong><br><br>  </property><br><br>  <property><br><br>​       <name>yarn.nodemanager.resource.memory-mb</name><br><br>​       <value>8192</value><br><br>  </property><br><br></configuration>
+
+<p>（8） 输入 vim slaves ，将原有内容删除，然后增加节点主机名，即</p>
+<p>slave01</p>
+<p>slave02</p>
+<p>slave03</p>
+<p>（9） 在master上配置完hadoop之后，需要把hadoop的安装目录远程拷贝到其他节点:</p>
+<p>scp -r   /usr/hadoop/hadoop-2.7.3/   root@slave01:/usr/hadoop/</p>
+<p>scp -r   /usr/hadoop/hadoop-2.7.3/   root@slave02: /usr/hadoop/</p>
+<p>scp -r   /usr/hadoop/hadoop-2.7.3/   root@slave03: /usr/hadoop/</p>
+<p>（10） 输入 vim /etc/profile ，添加Hadoop环境变量</p>
+<p>HADOOP_HOME=/usr/hadoop/hadoop-2.7.3</p>
+<p>export PATH=$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH</p>
+<p>（11） 仍然master状态下，格式化namenode，进入hadoop-2.7.3文件夹</p>
+<p>【如果Hadoop环境变量已经配置，就不需要前面的bin】</p>
+<p>输入：bin/hdfs namenode -format </p>
+<p>（12） 在master上启动Hadoop集群</p>
+<p>【如果Hadoop环境变量已经配置，就不需要前面的sbin】</p>
+<p>sbin/start-dfs.sh</p>
+<p>sbin/start-yarn.sh</p>
+<p>（13） 最后jps查看</p>
+<p>Master（NameNode, ResourceManager【管理NodeManager】）</p>
+<p>Slave01（SecondaryNameNode, DataNode, NodeManager）</p>
+<p>Slave02（DataNode, NodeManager）</p>
+<p>Slave03（DataNode, NodeManager）</p>
+<h2 id="第三部分：验证集群运行情况"><a href="#第三部分：验证集群运行情况" class="headerlink" title="第三部分：验证集群运行情况"></a><strong>第三部分：验证集群运行情况</strong></h2><p>1、 打开master浏览器，输入 master:50070 ，查看是否激活了三个节点</p>
+<p><img src="file:///C:\Users\王\AppData\Local\Temp\ksohtml10576\wps1.jpg" alt="img"> </p>
+<p><img src="file:///C:\Users\王\AppData\Local\Temp\ksohtml10576\wps2.jpg" alt="img"> </p>
+<p>此时，表示Hadoop集群已正式启动</p>
+<p>2、 输入 master:8088 ，查看mapreduce是否正常启动</p>
+<p><img src="file:///C:\Users\王\AppData\Local\Temp\ksohtml10576\wps3.jpg" alt="img"> </p>
+<h2 id="第四部分：简单的项目验证"><a href="#第四部分：简单的项目验证" class="headerlink" title="第四部分：简单的项目验证"></a><strong>第四部分：简单的项目验证</strong></h2><p>1、 首先准备一个txt，里面写一些单词，以空格为单位隔开，</p>
+<p>假设/home/master/workspace/ wordCountTest.txt</p>
+<p>2、 输入 </p>
+<p>hadoop jar /usr/hadoop/hadoop-2.7.3/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.3.jar wordcount <strong>file:///home/master/workspace/wordCountTest.txt</strong> hdfs://master:9000/output</p>
+<p>3、 注意，由于真正运行工作的是3个从机，因此使用本地文本，很容易从机找不到，会报错，因此，可以采用2种方法：</p>
+<p>（1）通过scp -r /home/master/workspace/wordCountTest.txt root@slave01: /home/master/workspace/ 的方式，给3个从机都发送一份</p>
+<p>（2）可以将需要计算的txt上传至hdfs中，输入</p>
+<p>4、 运行成功后，可以刷新<a href="http://master:8088/" target="_blank" rel="noopener">http://master:8088/</a>，会看到生成了一个执行进程</p>
+<p>5、 刷新<a href="http://master:50070/" target="_blank" rel="noopener">http://master:50070/</a>，可以直接查看生成的文件</p>
+<p><img src="file:///C:\Users\王\AppData\Local\Temp\ksohtml10576\wps4.jpg" alt="img"> </p>
+<p><img src="file:///C:\Users\王\AppData\Local\Temp\ksohtml10576\wps5.jpg" alt="img"> </p>
+<p>6、 全部结束后，关闭服务器</p>
+<p>【如果Hadoop环境变量已经配置，就不需要前面的sbin】</p>
+<p>sbin/stop-dfs.sh</p>
+<p>sbin/stop-yarn.sh</p>
+<h2 id="第五部分：常见问题以及注意事项"><a href="#第五部分：常见问题以及注意事项" class="headerlink" title="第五部分：常见问题以及注意事项"></a><strong>第五部分：常见问题以及注意事项</strong></h2><p>1、 如果格式化出错，可以打开master虚拟机，进入hadoop-2.7.3文件夹，输入ls，</p>
+<p>（1） 可以看到hdfs文件夹，进入后打开，可以看到一个name文件夹，删掉</p>
+<p>（2） 可以看到tmp文件夹，进入打开后，把里面的内容清空</p>
+<p>（3） 把其他从节点里面的hdfs文件夹，里面的内容全部清空</p>
+<p>（4） 把其他从节点里面的tmp文件夹，里面的内容全部清空</p>
+<p>（5） 可以通过logs里面的日志查看哪里错误，查看好以后，清空logs里面的内容</p>
+<p>2、 有可能会出现集群运行后，不满足3个子节点的情况</p>
+<p><img src="file:///C:\Users\王\AppData\Local\Temp\ksohtml10576\wps6.jpg" alt="img"> </p>
+<p>要注意时间同步，时间没有同步，出现时长差距较大，就会出现掉进程现象</p>
+<p>此外，检查其他所有配置文件</p>
+<p>3、 格式化成功后，就不要再格式化第二次！！！</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">新的开始</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">四台主机（不推荐）</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/07/17/jquery-css按钮的切换和图表的显示与隐藏/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">jquery+css按钮的切换和图表的显示与隐藏</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="hadoop集群搭建（仅主机模式）" data-title="hadoop集群搭建（仅主机模式）" data-url="http://yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/", 
+    sourceId: "hadoop集群搭建（仅主机模式）",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-    
+  
+  <div id="SOHUCS" sid="hadoop集群搭建（仅主机模式）"></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js"></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+
+  
+
+  
+
+  
 
 
           </div>
@@ -220,8 +571,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
