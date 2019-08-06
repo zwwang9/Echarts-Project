@@ -22,7 +22,7 @@
 <meta property="og:image" content="file:///C:/Users/王/AppData/Local/Temp/ksohtml10576/wps4.jpg">
 <meta property="og:image" content="file:///C:/Users/王/AppData/Local/Temp/ksohtml10576/wps5.jpg">
 <meta property="og:image" content="file:///C:/Users/王/AppData/Local/Temp/ksohtml10576/wps6.jpg">
-<meta property="og:updated_time" content="2019-08-06T03:34:48.707Z">
+<meta property="og:updated_time" content="2019-08-06T05:53:04.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop集群搭建（仅主机模式）">
 <meta name="twitter:description" content="Hadoop集群搭建（1主3从，仅主机模式）">
@@ -321,27 +321,116 @@
 <p># The java implementation to use.</p>
 <p><strong>export JAVA_HOME=/usr/java/jdk1.8.0_131</strong></p>
 <p>（4） 输入 vim core-site.xml ，增加内容，注意按照自己的修改内容【IP和路径】</p>
-<configuration><br><br>​    <property><br><br>​        <name>fs.default.name</name><br><br>​        <strong><value>hdfs://192.168.62.128:9000</value></strong><br><br>​    </property><br><br>​    <property><br><br>​        <name>fs.defaultFS</name><br><br>​        <strong><value>hdfs://master:9000</value></strong><br><br>​    </property><br><br>​    <property><br><br>​        <name>hadoop.tmp.dir</name><br><br>​          <strong><value>/usr/hadoop/hadoop-2.7.3/tmp</value></strong><br><br>​        <description>store tmp file</description><br><br>​    </property><br><br>​    <property><br><br>​        <name>io.file.buffer.size</name><br><br>​        <value>131072</value><br><br>​    </property><br><br>​    <property><br><br>​        <name>hadoop.proxyuser.hadoop.hosts</name><br><br>​        <value><em></em></value><br><br>​    </property><br><br>​    <property><br><br>​        <name>hadoop.proxyuser.hadoop.groups</name><br><br>​        <value></value><br><br>​    </property><br><br></configuration>
-
+<p><code>&lt;configuration&gt;</code></p>
+<p>​    <code>&lt;property&gt;</code></p>
+<p>​        <code>&lt;name&gt;fs.default.name&lt;/name&gt;</code></p>
+<p>​        <code>**&lt;value&gt;hdfs://192.168.62.128:9000&lt;/value&gt;**</code></p>
+<p>​    <code>&lt;/property&gt;</code></p>
+<p>​    <code>&lt;property&gt;</code> </p>
+<p>​        <code>&lt;name&gt;fs.defaultFS&lt;/name&gt;</code>                     </p>
+<p>​        <code>**&lt;value&gt;hdfs://master:9000&lt;/value&gt;**</code></p>
+<p>​    <code>&lt;/property&gt;</code></p>
+<p>​    <code>&lt;property&gt;</code></p>
+<p>​        <code>&lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</code>   </p>
+<p>​          <code>**&lt;value&gt;/usr/hadoop/hadoop-2.7.3/tmp&lt;/value&gt;**</code></p>
+<p>​        <code>&lt;description&gt;store tmp file&lt;/description&gt;</code></p>
+<p>​    <code>&lt;/property&gt;</code></p>
+<p>​    <code>&lt;property&gt;</code></p>
+<p>​        <code>&lt;name&gt;io.file.buffer.size&lt;/name&gt;</code></p>
+<p>​        <code>&lt;value&gt;131072&lt;/value&gt;</code></p>
+<p>​    <code>&lt;/property&gt;</code></p>
+<p>​    <code>&lt;property&gt;</code></p>
+<p>​        <code>&lt;name&gt;hadoop.proxyuser.hadoop.hosts&lt;/name&gt;</code></p>
+<p>​        <code>&lt;value&gt;*&lt;/value&gt;</code></p>
+<p>​    <code>&lt;/property&gt;</code></p>
+<p>​    <code>&lt;property&gt;</code></p>
+<p>​        <code>&lt;name&gt;hadoop.proxyuser.hadoop.groups&lt;/name&gt;</code></p>
+<p>​        <code>&lt;value&gt;*&lt;/value&gt;</code></p>
+<p>​    <code>&lt;/property&gt;</code></p>
+<p><code>&lt;/configuration&gt;</code></p>
 <p>（5） 输入 vim hdfs-site.xml ，增加内容，注意按照自己的修改内容【主机名和路径】，默认存3块</p>
-<configuration><br><br><property><br><br>​     <name>dfs.namenode.http-address</name><br><br>​     <strong><value>master:50070</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.namenode.secondary.http-address</name><br><br>​     <strong><value>slave01:50090</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.replication</name><br><br>​     <value>3</value><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.name.dir</name><br><br>​     <strong><value>/usr/hadoop/hadoop-2.7.3/hdfs/name</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.data.dir</name><br><br>​     <strong><value>/usr/hadoop/hadoop-2.7.3/hdfs/data</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.namenode.checkpoint.dir</name><br><br>​     <strong><value>/usr/hadoop/hadoop-2.7.3/hdfs/namesecondary</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.webhdfs.enabled</name><br><br>​     <value>true</value><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.stream-buffer-size</name><br><br>​     <value>131072</value><br><br>  </property><br><br></configuration>
-
+<p><code>&lt;configuration&gt;</code></p>
+<p><code>&lt;property&gt;</code></p>
+<p>​     <code>&lt;name&gt;dfs.namenode.http-address&lt;/name&gt;</code></p>
+<p>​     <code>**&lt;value&gt;master:50070&lt;/value&gt;**</code></p>
+<p>  <code>&lt;/property&gt;</code></p>
+<p>  <code>&lt;property&gt;</code></p>
+<p>​     <code>&lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;</code></p>
+<p>​     <code>**&lt;value&gt;slave01:50090&lt;/value&gt;**</code></p>
+<p>  <code>&lt;/property&gt;</code></p>
+<p>  <code>&lt;property&gt;</code></p>
+<p>​     <code>&lt;name&gt;dfs.replication&lt;/name&gt;</code></p>
+<p>​     <code>&lt;value&gt;3&lt;/value&gt;</code></p>
+<p>  <code>&lt;/property&gt;</code></p>
+<p>  <code>&lt;property&gt;</code></p>
+<p>​     <code>&lt;name&gt;dfs.name.dir&lt;/name&gt;</code></p>
+<p>​     <code>**&lt;value&gt;/usr/hadoop/hadoop-2.7.3/hdfs/name&lt;/value&gt;**</code></p>
+<p>  <code>&lt;/property&gt;</code>                                              </p>
+<p>  <code>&lt;property&gt;</code>                                                             </p>
+<p>​     <code>&lt;name&gt;dfs.data.dir&lt;/name&gt;</code>                                  </p>
+<p>​     <code>**&lt;value&gt;/usr/hadoop/hadoop-2.7.3/hdfs/data&lt;/value&gt;**</code></p>
+<p>  <code>&lt;/property&gt;</code></p>
+<p>  <code>&lt;property&gt;</code></p>
+<p>​     <code>&lt;name&gt;dfs.namenode.checkpoint.dir&lt;/name&gt;</code></p>
+<p>​     <code>**&lt;value&gt;/usr/hadoop/hadoop-2.7.3/hdfs/namesecondary&lt;/value&gt;**</code></p>
+<p>  <code>&lt;/property&gt;</code></p>
+<p>  <code>&lt;property&gt;</code></p>
+<p>​     <code>&lt;name&gt;dfs.webhdfs.enabled&lt;/name&gt;</code></p>
+<p>​     <code>&lt;value&gt;true&lt;/value&gt;</code></p>
+<p>  <code>&lt;/property&gt;</code></p>
+<p>  <code>&lt;property&gt;</code></p>
+<p>​     <code>&lt;name&gt;dfs.stream-buffer-size&lt;/name&gt;</code></p>
+<p>​     <code>&lt;value&gt;131072&lt;/value&gt;</code></p>
+<p>  <code>&lt;/property&gt;</code></p>
+<p><code>&lt;/configuration&gt;</code></p>
 <p>（6） 将mapred-site.xml.template重命名为mapred-site.xml</p>
 <p>mv mapred-site.xml.template mapred-site.xml</p>
 <p>然后输入 vim mapred-site.xml ，增加内容，注意按照自己的修改内容【主机名】</p>
-<configuration><br><br> <property><br><br>​    <name>mapreduce.framework.name</name><br><br>​    <value>yarn</value><br><br> </property><br><br> <property><br><br>​    <name>mapreduce.jobhistory.address</name><br><br>​    <strong><value>master:10020</value></strong><br><br> </property><br><br> <property><br><br>​    <name>mapreduce.jobhistory.webapp.address</name><br><br>​    <strong><value>master:19888</value></strong><br><br> </property><br><br></configuration>
-
+<p><code>&lt;configuration&gt;</code></p>
+<p> <code>&lt;property&gt;</code></p>
+<p>​    <code>&lt;name&gt;mapreduce.framework.name&lt;/name&gt;</code></p>
+<p>​    <code>&lt;value&gt;yarn&lt;/value&gt;</code></p>
+<p> <code>&lt;/property&gt;</code></p>
+<p> <code>&lt;property&gt;</code></p>
+<p>​    <code>&lt;name&gt;mapreduce.jobhistory.address&lt;/name&gt;</code></p>
+<p>​    <code>**&lt;value&gt;master:10020&lt;/value&gt;**</code></p>
+<p> <code>&lt;/property&gt;</code></p>
+<p> <code>&lt;property&gt;</code></p>
+<p>​    <code>&lt;name&gt;mapreduce.jobhistory.webapp.address&lt;/name&gt;</code></p>
+<p>​    <code>**&lt;value&gt;master:19888&lt;/value&gt;**</code></p>
+<p> <code>&lt;/property&gt;</code></p>
+<p><code>&lt;/configuration&gt;</code></p>
 <p>（7） 输入 vim yarn-site.xml ，增加内容，注意按照自己的修改内容【主机名】</p>
-<configuration><br><br> <property><br><br>​      <name>yarn.resourcemanager.hostname</name><br><br>​      <strong><value>master</value></strong><br><br>  </property><br><br>  <property><br><br>​       <name>yarn.nodemanager.aux-services</name><br><br>​       <value>mapreduce_shuffle</value><br><br>  </property><br><br>  <property><br><br>​       <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name><br><br>​       <value>org.apache.hadoop.mapred.ShuffleHandler</value><br><br>  </property><br><br>  <property><br><br>​       <name>yarn.resourcemanager.address</name><br><br>​       <strong><value>master:8032</value></strong><br><br>  </property><br><br>  <property><br><br>​       <name>yarn.nodemanager.resource.memory-mb</name><br><br>​       <value>8192</value><br><br>  </property><br><br></configuration>
-
+<p><code>&lt;configuration&gt;</code></p>
+<p> <code>&lt;property&gt;</code></p>
+<p>​      <code>&lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</code></p>
+<p>​      <code>**&lt;value&gt;master&lt;/value&gt;**</code></p>
+<p>  <code>&lt;/property&gt;</code></p>
+<p>  <code>&lt;property&gt;</code></p>
+<p>​       <code>&lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</code></p>
+<p>​       <code>&lt;value&gt;mapreduce_shuffle&lt;/value&gt;</code></p>
+<p>  <code>&lt;/property&gt;</code></p>
+<p>  <code>&lt;property&gt;</code></p>
+<p>​       <code>&lt;name&gt;yarn.nodemanager.aux-services.mapreduce.shuffle.class&lt;/name&gt;</code></p>
+<p>​       <code>&lt;value&gt;org.apache.hadoop.mapred.ShuffleHandler&lt;/value&gt;</code></p>
+<p>  <code>&lt;/property&gt;</code></p>
+<p>  <code>&lt;property&gt;</code></p>
+<p>​       <code>&lt;name&gt;yarn.resourcemanager.address&lt;/name&gt;</code></p>
+<p>​       <code>**&lt;value&gt;master:8032&lt;/value&gt;**</code></p>
+<p>  <code>&lt;/property&gt;</code></p>
+<p>  <code>&lt;property&gt;</code></p>
+<p>​       <code>&lt;name&gt;yarn.nodemanager.resource.memory-mb&lt;/name&gt;</code></p>
+<p>​       <code>&lt;value&gt;8192&lt;/value&gt;</code></p>
+<p>  <code>&lt;/property&gt;</code></p>
+<p><code>&lt;/configuration&gt;</code></p>
 <p>（8） 输入 vim slaves ，将原有内容删除，然后增加节点主机名，即</p>
 <p>slave01</p>
 <p>slave02</p>
 <p>slave03</p>
 <p>（9） 在master上配置完hadoop之后，需要把hadoop的安装目录远程拷贝到其他节点:</p>
-<p>scp -r   /usr/hadoop/hadoop-2.7.3/   root@slave01:/usr/hadoop/</p>
-<p>scp -r   /usr/hadoop/hadoop-2.7.3/   root@slave02: /usr/hadoop/</p>
-<p>scp -r   /usr/hadoop/hadoop-2.7.3/   root@slave03: /usr/hadoop/</p>
+<p><code>scp -r   /usr/hadoop/hadoop-2.7.3/   root@slave01:/usr/hadoop/</code></p>
+<p><code>scp -r   /usr/hadoop/hadoop-2.7.3/   root@slave02: /usr/hadoop/</code></p>
+<p><code>scp -r   /usr/hadoop/hadoop-2.7.3/   root@slave03: /usr/hadoop/</code></p>
 <p>（10） 输入 vim /etc/profile ，添加Hadoop环境变量</p>
 <p>HADOOP_HOME=/usr/hadoop/hadoop-2.7.3</p>
 <p>export PATH=$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH</p>
