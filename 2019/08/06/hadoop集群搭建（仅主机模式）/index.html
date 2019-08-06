@@ -16,17 +16,17 @@
 <meta property="og:site_name" content="易只瘦鹤的个人博客">
 <meta property="og:description" content="Hadoop集群搭建（1主3从，仅主机模式）">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/master.png">
-<meta property="og:image" content="file:///C:/Users/王/AppData/Local/Temp/ksohtml10576/wps2.jpg">
+<meta property="og:image" content="http://yoursite.com/images/master.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/master-1565073591197.png">
 <meta property="og:image" content="file:///C:/Users/王/AppData/Local/Temp/ksohtml10576/wps3.jpg">
 <meta property="og:image" content="file:///C:/Users/王/AppData/Local/Temp/ksohtml10576/wps4.jpg">
 <meta property="og:image" content="file:///C:/Users/王/AppData/Local/Temp/ksohtml10576/wps5.jpg">
 <meta property="og:image" content="file:///C:/Users/王/AppData/Local/Temp/ksohtml10576/wps6.jpg">
-<meta property="og:updated_time" content="2019-08-06T05:53:04.768Z">
+<meta property="og:updated_time" content="2019-08-06T06:43:20.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop集群搭建（仅主机模式）">
 <meta name="twitter:description" content="Hadoop集群搭建（1主3从，仅主机模式）">
-<meta name="twitter:image" content="http://yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/master.png">
+<meta name="twitter:image" content="http://yoursite.com/images/master.png">
   
     <link rel="alternative" href="/atom.xml" title="易只瘦鹤的个人博客" type="application/atom+xml">
   
@@ -187,49 +187,25 @@
 <p>例如：master机器IP设置为 192.168.62.128，后面的三台从机分别为129.130.131</p>
 <p>4、 打开master虚拟机，输入vim /etc/hosts，添加IP与主机的映射</p>
 <p>例如：</p>
-<p>192.168.62.128 master</p>
-<p>192.168.62.129 slave01</p>
-<p>192.168.62.130 slave02</p>
-<p>192.168.62.131 slave03</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">192.168.62.128 master</span><br><span class="line"></span><br><span class="line">192.168.62.129 slave01</span><br><span class="line"></span><br><span class="line">192.168.62.130 slave02</span><br><span class="line"></span><br><span class="line">192.168.62.131 slave03</span><br></pre></td></tr></table></figure>
 <p>修改后保存，然后在master中进行ping slave01测试，如果可以，表示通讯正常</p>
 <p>5、 修改slave01第一个节点虚拟机。</p>
 <p>（1） 输入vim /etc/hosts，添加IP与主机的映射，例如：</p>
-<p>192.168.62.128 master</p>
-<p>192.168.62.129 slave01</p>
-<p>192.168.62.130 slave02</p>
-<p>192.168.62.131 slave03</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">192.168.62.128 master</span><br><span class="line"></span><br><span class="line">192.168.62.129 slave01</span><br><span class="line"></span><br><span class="line">192.168.62.130 slave02</span><br><span class="line"></span><br><span class="line">192.168.62.131 slave03</span><br></pre></td></tr></table></figure>
 <p>修改后保存，然后在master中进行ping master测试，如果可以，表示通讯正常</p>
 <p>（2）输入vim /etc/systemconfig/network 修改主机名</p>
-<p>​     NETWORKING=yes</p>
-<p>​     HOSTNAME=slave01</p>
+<p>​     </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NETWORKING=yes</span><br><span class="line">HOSTNAME=slave01</span><br></pre></td></tr></table></figure>
 <p>（3）输入 vim /etc/udev/rules.d/70-persistent-net.rules ，删除整个eth0配置。</p>
 <p>​     然后将新生成的eth1修改为eth0</p>
 <p>​     然后复制里面新的物理地址，打开vim /etc/sysconfig/network-scripts/ifcfg-eth0</p>
 <p>​     将里面的物理地址替换</p>
-<p>DEVICE=eth0</p>
-<p>BOOTPROTO=dhcp</p>
-<p><strong>HWADDR=00:0c:29:1b:03:0e</strong></p>
-<p>IPV6INIT=yes</p>
-<p>NM_CONTROLLED=yes</p>
-<p>ONBOOT=yes</p>
-<p>TYPE=Ethernet</p>
-<p>UID=”1c3b572c-c3e9-407f-8ede-d0c6c043088b”</p>
-<p>DNS2=8.8.8.8</p>
-<p>DNS1=202.102.213.68</p>
-<p>USERCTL=no</p>
-<p>PEERDNS=yes</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=eth0</span><br><span class="line"></span><br><span class="line">BOOTPROTO=dhcp</span><br><span class="line"></span><br><span class="line">HWADDR=00:0c:29:1b:03:0e</span><br><span class="line"></span><br><span class="line">IPV6INIT=yes</span><br><span class="line"></span><br><span class="line">NM_CONTROLLED=yes</span><br><span class="line"></span><br><span class="line">ONBOOT=yes</span><br><span class="line"></span><br><span class="line">TYPE=Ethernet</span><br><span class="line"></span><br><span class="line">UID=&quot;1c3b572c-c3e9-407f-8ede-d0c6c043088b&quot;</span><br><span class="line"></span><br><span class="line">DNS2=8.8.8.8</span><br><span class="line"></span><br><span class="line">DNS1=202.102.213.68</span><br><span class="line"></span><br><span class="line">USERCTL=no</span><br><span class="line"></span><br><span class="line">PEERDNS=yes</span><br></pre></td></tr></table></figure>
 <p>​    （4）reboot重启，重启后输入ifconfig看是否更新为eth0，尝试ping其他虚拟机</p>
 <p>6、 修改slave02和slave03这二个节点虚拟机。同slave01</p>
 <p>7、 回到主机，在C盘中进入windows文件夹，搜索一个hosts文件，正常属于etc文件夹，然后打开hosts文件，进入编辑，添加虚拟机中的4台虚拟机IP和主机映射关系。</p>
 <p>例如：</p>
-<p>#master</p>
-<p>#    192.168.62.128       master</p>
-<p>#slave01</p>
-<p>#    192.168.62.129       slave01</p>
-<p>#slave02</p>
-<p>#    192.168.62.130       slave02</p>
-<p>#slave03</p>
-<p>#    192.168.62.131       slave03</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#master</span><br><span class="line">#	192.168.62.128       master</span><br><span class="line">#slave01</span><br><span class="line">#	192.168.62.129       slave01</span><br><span class="line">#slave02</span><br><span class="line">#	192.168.62.130       slave02</span><br><span class="line">#slave03</span><br><span class="line">#	192.168.62.131       slave03</span><br></pre></td></tr></table></figure>
 <p>完成4台虚拟机的网卡信息、主机名、映射配置。</p>
 <h2 id="第二部分：集群搭建配置修改"><a href="#第二部分：集群搭建配置修改" class="headerlink" title="第二部分：集群搭建配置修改"></a><strong>第二部分：集群搭建配置修改</strong></h2><p>1、 ssh安装和配置(免密码配置)</p>
 <p>目的：让master可以控制3台从机，但从机不允许直接访问主机</p>
@@ -247,63 +223,18 @@
 <p>【grep（global search regular expression(RE) and print out the line，全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。】</p>
 <p>【NTP是网络时间协议(Network Time Protocol)，它是用来同步网络中各个计算机的时间的协议。】</p>
 <p>（4） 输入vim /etc/ntp.conf ，共修改三处</p>
-<p>For more information about this file, see the man pages</p>
-<p># ntp.conf(5), ntp_acc(5), ntp_auth(5), ntp_clock(5), ntp_misc(5), ntp_mon(5).</p>
-<p>driftfile /var/lib/ntp/drift</p>
-<p># Permit time synchronization with our time source, but do not</p>
-<p># permit the source to query or modify the service on this system.</p>
-<p>restrict default kod nomodify notrap nopeer noquery</p>
-<p>restrict -6 default kod nomodify notrap nopeer noquery</p>
-<p># Permit all access over the loopback interface.  This could</p>
-<p># be tightened as well, but to do so would effect some of</p>
-<p># the administrative functions.</p>
-<p>restrict 127.0.0.1</p>
-<p>restrict -6 ::1</p>
-<p># Hosts on local network are less restricted.</p>
-<p><strong>restrict 192.168.**</strong>62<strong>**.0 mask 255.255.255.0 nomodify notrap</strong></p>
-<p><strong>【删除注释，将第三位修改为主机m**</strong>aster<strong>**的第三位，最后一位0不变】</strong></p>
-<p># Use public servers from the pool.ntp.org project.</p>
-<p># Please consider joining the pool (<a href="http://www.pool.ntp.org/join.html)" target="_blank" rel="noopener">http://www.pool.ntp.org/join.html)</a>.</p>
-<p><strong>#**</strong>server 0.centos.pool.ntp.org iburst**</p>
-<p><strong>#**</strong>server 1.centos.pool.ntp.org iburst**</p>
-<p><strong>#**</strong>server 2.centos.pool.ntp.org iburst**</p>
-<p><strong>#**</strong>server 3.centos.pool.ntp.org iburst**</p>
-<p><strong>【四行注释掉】</strong></p>
-<p>#broadcast 192.168.1.255 autokey        # broadcast server</p>
-<p>#broadcastclient                        # broadcast client</p>
-<p>#broadcast 224.0.1.1 autokey            # multicast server</p>
-<p>#multicastclient 224.0.1.1              # multicast client</p>
-<p>#manycastserver 239.255.254.254         # manycast server</p>
-<p>#manycastclient 239.255.254.254 autokey # manycast client</p>
-<p># Enable public key cryptography.</p>
-<p><strong>server 127.127.1.0</strong></p>
-<p><strong>f**</strong>udge 127.127.1.0 stratum 10**</p>
-<p><strong>【增加两句话】</strong></p>
-<p>#crypto</p>
-<p>includefile /etc/ntp/crypto/pw</p>
-<p># Key file containing the keys and key identifiers used when operating</p>
-<p># with symmetric key cryptography. </p>
-<p>keys /etc/ntp/keys</p>
-<p># Specify the key identifiers which are trusted.</p>
-<p>#trustedkey 4 8 42</p>
-<p># Specify the key identifier to use with the ntpdc utility.</p>
-<p>#requestkey 8</p>
-<p># Specify the key identifier to use with the ntpq utility.</p>
-<p>#controlkey 8</p>
-<p># Enable writing of statistics records.</p>
-<p>#statistics clockstats cryptostats loopstats peerstats</p>
 <p>（5） 输入 vim /etc/sysconfig/ntpd ，增加一行代码</p>
 <p>#Drop root to id ‘ntp:ntp’ by default.</p>
-<p><strong>S**</strong>YNC_HWCLOCK=<strong>**yes</strong>  <strong>【设置时间同步】</strong></p>
+<p>SYNC_HWCLOCK=yes【设置时间同步】</p>
 <p>OPTIONS=”-u ntp:ntp -p /var/run/ntpd.pid -g”</p>
 <p>（6） 重启时间服务器，首先查看当前状态 service ntpd status ，</p>
 <p>如果关闭，则打开时间服务器 service ntpd start</p>
 <p>打开后，设置时间每次永久开启 chkconfig ntpd on</p>
 <p>（7） 编写脚本  crontab -e</p>
 <p>【crond 是linux下用来周期性的执行某种任务或等待处理某些事件的一个守护进程，与windows下的计划任务类似，当安装完成操作系统后，默认会安装此服务 工具，并且会自动启动crond进程，crond进程每分钟会定期检查是否有要执行的任务，如果有要执行的任务，则自动执行该任务。】</p>
-<p><strong>0-59/10</strong> <strong>*</strong> <strong>*</strong> <strong>*</strong> <strong>*</strong> <strong>/**</strong>usr/sbin/ntpdate master<strong>  </strong>【设置每隔十分钟执行一次】**</p>
+<p><strong>0-59/10</strong> <strong>*</strong> <strong>*</strong> <strong>*</strong> <strong>*</strong> <strong>/**</strong>usr/sbin/ntpdate master  <strong>【设置每隔十分钟执行一次】</strong></p>
 <p>（8） 打开slave01，编写脚本  crontab -e</p>
-<p><strong>0-59/10</strong> <strong>*</strong> <strong>*</strong> <strong>*</strong> <strong>*</strong> <strong>/**</strong>usr/sbin/ntpdate master<strong>  </strong>【表示只和m<strong><strong>aster</strong></strong>同步】**</p>
+<p><strong>0-59/10</strong> <strong>*</strong> <strong>*</strong> <strong>*</strong> <strong>*</strong> **/usr/sbin/ntpdate master 【表示只和master同步】</p>
 <p>（9） 同理，完成slave02和slave03的脚本编写</p>
 <p>（10） 关闭4台虚拟机防火墙，进行时间同步，注意防火墙不关，无法实现同步，关闭防火墙后，4台虚拟机全部重启</p>
 <p>chkconfig iptables off 【设置永久关闭】 </p>
@@ -321,108 +252,19 @@
 <p># The java implementation to use.</p>
 <p><strong>export JAVA_HOME=/usr/java/jdk1.8.0_131</strong></p>
 <p>（4） 输入 vim core-site.xml ，增加内容，注意按照自己的修改内容【IP和路径】</p>
-<p><code>&lt;configuration&gt;</code></p>
-<p>​    <code>&lt;property&gt;</code></p>
-<p>​        <code>&lt;name&gt;fs.default.name&lt;/name&gt;</code></p>
-<p>​        <code>**&lt;value&gt;hdfs://192.168.62.128:9000&lt;/value&gt;**</code></p>
-<p>​    <code>&lt;/property&gt;</code></p>
-<p>​    <code>&lt;property&gt;</code> </p>
-<p>​        <code>&lt;name&gt;fs.defaultFS&lt;/name&gt;</code>                     </p>
-<p>​        <code>**&lt;value&gt;hdfs://master:9000&lt;/value&gt;**</code></p>
-<p>​    <code>&lt;/property&gt;</code></p>
-<p>​    <code>&lt;property&gt;</code></p>
-<p>​        <code>&lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</code>   </p>
-<p>​          <code>**&lt;value&gt;/usr/hadoop/hadoop-2.7.3/tmp&lt;/value&gt;**</code></p>
-<p>​        <code>&lt;description&gt;store tmp file&lt;/description&gt;</code></p>
-<p>​    <code>&lt;/property&gt;</code></p>
-<p>​    <code>&lt;property&gt;</code></p>
-<p>​        <code>&lt;name&gt;io.file.buffer.size&lt;/name&gt;</code></p>
-<p>​        <code>&lt;value&gt;131072&lt;/value&gt;</code></p>
-<p>​    <code>&lt;/property&gt;</code></p>
-<p>​    <code>&lt;property&gt;</code></p>
-<p>​        <code>&lt;name&gt;hadoop.proxyuser.hadoop.hosts&lt;/name&gt;</code></p>
-<p>​        <code>&lt;value&gt;*&lt;/value&gt;</code></p>
-<p>​    <code>&lt;/property&gt;</code></p>
-<p>​    <code>&lt;property&gt;</code></p>
-<p>​        <code>&lt;name&gt;hadoop.proxyuser.hadoop.groups&lt;/name&gt;</code></p>
-<p>​        <code>&lt;value&gt;*&lt;/value&gt;</code></p>
-<p>​    <code>&lt;/property&gt;</code></p>
-<p><code>&lt;/configuration&gt;</code></p>
+<configuration><br><br>​    <property><br><br>​        <name>fs.default.name</name><br><br>​        <strong><value>hdfs://192.168.62.128:9000</value></strong><br><br>​    </property><br><br>​    <property><br><br>​        <name>fs.defaultFS</name><br><br>​        <strong><value>hdfs://master:9000</value></strong><br><br>​    </property><br><br>​    <property><br><br>​        <name>hadoop.tmp.dir</name><br><br>​          <strong><value>/usr/hadoop/hadoop-2.7.3/tmp</value></strong><br><br>​        <description>store tmp file</description><br><br>​    </property><br><br>​    <property><br><br>​        <name>io.file.buffer.size</name><br><br>​        <value>131072</value><br><br>​    </property><br><br>​    <property><br><br>​        <name>hadoop.proxyuser.hadoop.hosts</name><br><br>​        <value><em></em></value><br><br>​    </property><br><br>​    <property><br><br>​        <name>hadoop.proxyuser.hadoop.groups</name><br><br>​        <value></value><br><br>​    </property><br><br></configuration>
+
 <p>（5） 输入 vim hdfs-site.xml ，增加内容，注意按照自己的修改内容【主机名和路径】，默认存3块</p>
-<p><code>&lt;configuration&gt;</code></p>
-<p><code>&lt;property&gt;</code></p>
-<p>​     <code>&lt;name&gt;dfs.namenode.http-address&lt;/name&gt;</code></p>
-<p>​     <code>**&lt;value&gt;master:50070&lt;/value&gt;**</code></p>
-<p>  <code>&lt;/property&gt;</code></p>
-<p>  <code>&lt;property&gt;</code></p>
-<p>​     <code>&lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;</code></p>
-<p>​     <code>**&lt;value&gt;slave01:50090&lt;/value&gt;**</code></p>
-<p>  <code>&lt;/property&gt;</code></p>
-<p>  <code>&lt;property&gt;</code></p>
-<p>​     <code>&lt;name&gt;dfs.replication&lt;/name&gt;</code></p>
-<p>​     <code>&lt;value&gt;3&lt;/value&gt;</code></p>
-<p>  <code>&lt;/property&gt;</code></p>
-<p>  <code>&lt;property&gt;</code></p>
-<p>​     <code>&lt;name&gt;dfs.name.dir&lt;/name&gt;</code></p>
-<p>​     <code>**&lt;value&gt;/usr/hadoop/hadoop-2.7.3/hdfs/name&lt;/value&gt;**</code></p>
-<p>  <code>&lt;/property&gt;</code>                                              </p>
-<p>  <code>&lt;property&gt;</code>                                                             </p>
-<p>​     <code>&lt;name&gt;dfs.data.dir&lt;/name&gt;</code>                                  </p>
-<p>​     <code>**&lt;value&gt;/usr/hadoop/hadoop-2.7.3/hdfs/data&lt;/value&gt;**</code></p>
-<p>  <code>&lt;/property&gt;</code></p>
-<p>  <code>&lt;property&gt;</code></p>
-<p>​     <code>&lt;name&gt;dfs.namenode.checkpoint.dir&lt;/name&gt;</code></p>
-<p>​     <code>**&lt;value&gt;/usr/hadoop/hadoop-2.7.3/hdfs/namesecondary&lt;/value&gt;**</code></p>
-<p>  <code>&lt;/property&gt;</code></p>
-<p>  <code>&lt;property&gt;</code></p>
-<p>​     <code>&lt;name&gt;dfs.webhdfs.enabled&lt;/name&gt;</code></p>
-<p>​     <code>&lt;value&gt;true&lt;/value&gt;</code></p>
-<p>  <code>&lt;/property&gt;</code></p>
-<p>  <code>&lt;property&gt;</code></p>
-<p>​     <code>&lt;name&gt;dfs.stream-buffer-size&lt;/name&gt;</code></p>
-<p>​     <code>&lt;value&gt;131072&lt;/value&gt;</code></p>
-<p>  <code>&lt;/property&gt;</code></p>
-<p><code>&lt;/configuration&gt;</code></p>
+<configuration><br><br><property><br><br>​     <name>dfs.namenode.http-address</name><br><br>​     <strong><value>master:50070</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.namenode.secondary.http-address</name><br><br>​     <strong><value>slave01:50090</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.replication</name><br><br>​     <value>3</value><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.name.dir</name><br><br>​     <strong><value>/usr/hadoop/hadoop-2.7.3/hdfs/name</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.data.dir</name><br><br>​     <strong><value>/usr/hadoop/hadoop-2.7.3/hdfs/data</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.namenode.checkpoint.dir</name><br><br>​     <strong><value>/usr/hadoop/hadoop-2.7.3/hdfs/namesecondary</value></strong><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.webhdfs.enabled</name><br><br>​     <value>true</value><br><br>  </property><br><br>  <property><br><br>​     <name>dfs.stream-buffer-size</name><br><br>​     <value>131072</value><br><br>  </property><br><br></configuration>
+
 <p>（6） 将mapred-site.xml.template重命名为mapred-site.xml</p>
 <p>mv mapred-site.xml.template mapred-site.xml</p>
 <p>然后输入 vim mapred-site.xml ，增加内容，注意按照自己的修改内容【主机名】</p>
-<p><code>&lt;configuration&gt;</code></p>
-<p> <code>&lt;property&gt;</code></p>
-<p>​    <code>&lt;name&gt;mapreduce.framework.name&lt;/name&gt;</code></p>
-<p>​    <code>&lt;value&gt;yarn&lt;/value&gt;</code></p>
-<p> <code>&lt;/property&gt;</code></p>
-<p> <code>&lt;property&gt;</code></p>
-<p>​    <code>&lt;name&gt;mapreduce.jobhistory.address&lt;/name&gt;</code></p>
-<p>​    <code>**&lt;value&gt;master:10020&lt;/value&gt;**</code></p>
-<p> <code>&lt;/property&gt;</code></p>
-<p> <code>&lt;property&gt;</code></p>
-<p>​    <code>&lt;name&gt;mapreduce.jobhistory.webapp.address&lt;/name&gt;</code></p>
-<p>​    <code>**&lt;value&gt;master:19888&lt;/value&gt;**</code></p>
-<p> <code>&lt;/property&gt;</code></p>
-<p><code>&lt;/configuration&gt;</code></p>
+<configuration><br><br> <property><br><br>​    <name>mapreduce.framework.name</name><br><br>​    <value>yarn</value><br><br> </property><br><br> <property><br><br>​    <name>mapreduce.jobhistory.address</name><br><br>​    <strong><value>master:10020</value></strong><br><br> </property><br><br> <property><br><br>​    <name>mapreduce.jobhistory.webapp.address</name><br><br>​    <strong><value>master:19888</value></strong><br><br> </property><br><br></configuration>
+
 <p>（7） 输入 vim yarn-site.xml ，增加内容，注意按照自己的修改内容【主机名】</p>
-<p><code>&lt;configuration&gt;</code></p>
-<p> <code>&lt;property&gt;</code></p>
-<p>​      <code>&lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</code></p>
-<p>​      <code>**&lt;value&gt;master&lt;/value&gt;**</code></p>
-<p>  <code>&lt;/property&gt;</code></p>
-<p>  <code>&lt;property&gt;</code></p>
-<p>​       <code>&lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</code></p>
-<p>​       <code>&lt;value&gt;mapreduce_shuffle&lt;/value&gt;</code></p>
-<p>  <code>&lt;/property&gt;</code></p>
-<p>  <code>&lt;property&gt;</code></p>
-<p>​       <code>&lt;name&gt;yarn.nodemanager.aux-services.mapreduce.shuffle.class&lt;/name&gt;</code></p>
-<p>​       <code>&lt;value&gt;org.apache.hadoop.mapred.ShuffleHandler&lt;/value&gt;</code></p>
-<p>  <code>&lt;/property&gt;</code></p>
-<p>  <code>&lt;property&gt;</code></p>
-<p>​       <code>&lt;name&gt;yarn.resourcemanager.address&lt;/name&gt;</code></p>
-<p>​       <code>**&lt;value&gt;master:8032&lt;/value&gt;**</code></p>
-<p>  <code>&lt;/property&gt;</code></p>
-<p>  <code>&lt;property&gt;</code></p>
-<p>​       <code>&lt;name&gt;yarn.nodemanager.resource.memory-mb&lt;/name&gt;</code></p>
-<p>​       <code>&lt;value&gt;8192&lt;/value&gt;</code></p>
-<p>  <code>&lt;/property&gt;</code></p>
-<p><code>&lt;/configuration&gt;</code></p>
+<configuration><br><br> <property><br><br>​      <name>yarn.resourcemanager.hostname</name><br><br>​      <strong><value>master</value></strong><br><br>  </property><br><br>  <property><br><br>​       <name>yarn.nodemanager.aux-services</name><br><br>​       <value>mapreduce_shuffle</value><br><br>  </property><br><br>  <property><br><br>​       <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name><br><br>​       <value>org.apache.hadoop.mapred.ShuffleHandler</value><br><br>  </property><br><br>  <property><br><br>​       <name>yarn.resourcemanager.address</name><br><br>​       <strong><value>master:8032</value></strong><br><br>  </property><br><br>  <property><br><br>​       <name>yarn.nodemanager.resource.memory-mb</name><br><br>​       <value>8192</value><br><br>  </property><br><br></configuration>
+
 <p>（8） 输入 vim slaves ，将原有内容删除，然后增加节点主机名，即</p>
 <p>slave01</p>
 <p>slave02</p>
@@ -447,8 +289,8 @@
 <p>Slave02（DataNode, NodeManager）</p>
 <p>Slave03（DataNode, NodeManager）</p>
 <h2 id="第三部分：验证集群运行情况"><a href="#第三部分：验证集群运行情况" class="headerlink" title="第三部分：验证集群运行情况"></a><strong>第三部分：验证集群运行情况</strong></h2><p>1、 打开master浏览器，输入 master:50070 ，查看是否激活了三个节点</p>
-<p><img src="//yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/master.png" alt></p>
-<p><img src="file:///C:\Users\王\AppData\Local\Temp\ksohtml10576\wps2.jpg" alt="img"> </p>
+<p><img src="/images/master.png" alt="F://hexo/blog/source"></p>
+<p><img src="//yoursite.com/2019/08/06/hadoop集群搭建（仅主机模式）/master-1565073591197.png" alt></p>
 <p>此时，表示Hadoop集群已正式启动</p>
 <p>2、 输入 master:8088 ，查看mapreduce是否正常启动</p>
 <p><img src="file:///C:\Users\王\AppData\Local\Temp\ksohtml10576\wps3.jpg" alt="img"> </p>
