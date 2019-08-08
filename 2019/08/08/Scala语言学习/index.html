@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 新的开始 | 易只瘦鹤的个人博客</title>
+  <title>Scala语言学习 | 易只瘦鹤的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="易只瘦鹤的个人博客">
-<meta property="og:url" content="http://yoursite.com/tags/新的开始/index.html">
+  <meta name="description" content="以下是Scala编程详解自己所做的笔记：">
+<meta name="keywords" content="Spark学习铺垫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scala语言学习">
+<meta property="og:url" content="http://yoursite.com/2019/08/08/Scala语言学习/index.html">
 <meta property="og:site_name" content="易只瘦鹤的个人博客">
+<meta property="og:description" content="以下是Scala编程详解自己所做的笔记：">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-08T09:30:14.717Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="易只瘦鹤的个人博客">
+<meta name="twitter:title" content="Scala语言学习">
+<meta name="twitter:description" content="以下是Scala编程详解自己所做的笔记：">
   
     <link rel="alternative" href="/atom.xml" title="易只瘦鹤的个人博客" type="application/atom+xml">
   
@@ -144,60 +149,219 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Scala语言学习" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/30/我的第一篇博客/" class="archive-article-date">
-  	<time datetime="2019-05-30T00:43:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/30/我的第一篇博客/">我的第一篇博客</a>
+    <h1 class="article-title" itemprop="name">
+      Scala语言学习
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/08/08/Scala语言学习/" class="archive-article-date">
+  	<time datetime="2019-08-08T09:21:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>以下是Scala编程详解自己所做的笔记：</p>
+<a id="more"></a>
+<h2 id="Scala条件控制与循环"><a href="#Scala条件控制与循环" class="headerlink" title="Scala条件控制与循环"></a>Scala条件控制与循环</h2><p>print打印时不会加换行符<br>println打印时加一个换行符<br>printf：可以用于进行格式化-》%s字符串，%d数字类型<br>readLine：允许从控制台读取用户输入的数据，类似System.in/Scanner，读取出来的数据为字符串类型readInt：读取出来的数据为Int类型</p>
+<p>案例：游戏厅门禁</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> name = readLine(<span class="string">"Welcome to Game House.Please tell your name："</span>)</span><br><span class="line">  print(<span class="string">"Thanks.Then please tell me your age："</span>)</span><br><span class="line">  <span class="keyword">val</span> age = readInt()</span><br><span class="line">  <span class="keyword">if</span>(age&gt;<span class="number">8</span>)&#123;                                                                           </span><br><span class="line">      printf(<span class="string">"Hi,%s,you are %d years old,so you are legel to come here!"</span>,name,age)        &#125;<span class="keyword">else</span>&#123;                                                                               </span><br><span class="line">      printf(<span class="string">"Sorry,boy,%s,you are only %d years old.you are illegal to come here!"</span>,name,age)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>while do循环：与Java基本语义相同<br>简易版for循环：for(i &lt;- 1 to n) println(i)<br>until：不达到上限for(i &lt;- 1 until n)println(i)<br>对字符串进行遍历：for(c &lt;- “Hello World”) print(c+” “)<br>跳出循环语句：提供了Breaks的break函数、boole类型变量、return来替代适用</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scala.util.control.<span class="type">Breaks</span>._ </span><br><span class="line">     breakable&#123;                </span><br><span class="line">             <span class="keyword">var</span> n = <span class="number">10</span>               </span><br><span class="line">             <span class="keyword">for</span>(c &lt;- <span class="string">"Hello World"</span>)&#123;   </span><br><span class="line">                    <span class="keyword">if</span>(n == <span class="number">5</span>) <span class="keyword">break</span>;   </span><br><span class="line">                          print(c)  </span><br><span class="line">                          n-=<span class="number">1</span>    </span><br><span class="line">               &#125;                    </span><br><span class="line">           &#125;</span><br></pre></td></tr></table></figure>
+<p>多重for循环：九九乘法表</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i &lt;- <span class="number">1</span> to <span class="number">9</span>;j&lt;- <span class="number">1</span> to <span class="number">9</span>)&#123;                                                         </span><br><span class="line">        <span class="keyword">if</span>(j==<span class="number">9</span>)&#123;                                                                          </span><br><span class="line">            println(i*j)                                                                     </span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;                                                                              </span><br><span class="line">            print(i*j+<span class="string">" "</span>)                                                                   </span><br><span class="line">        &#125;                                                                                </span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+<p>if守卫：取偶数</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i&lt;<span class="number">-1</span> to <span class="number">100</span> <span class="keyword">if</span> i%<span class="number">2</span> == <span class="number">0</span>) println(i)</span><br></pre></td></tr></table></figure>
+<p>for推导式：构造集合</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i &lt;- <span class="number">1</span> to <span class="number">10</span>) <span class="keyword">yield</span> i</span><br></pre></td></tr></table></figure>
+<h2 id="Scala函数入门"><a href="#Scala函数入门" class="headerlink" title="Scala函数入门"></a>Scala函数入门</h2><p>定义一个简单的函数：适用代码块的方式包裹多行代码，最后一行的返回值就是整个函数的返回值。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sayHello</span></span>(name:<span class="type">String</span>,age:<span class="type">Int</span>) = &#123;                                                </span><br><span class="line">           <span class="keyword">if</span>(age&gt;=<span class="number">18</span>)&#123;                                                                       </span><br><span class="line">                 printf(<span class="string">"Hi,%s,you are a big boy\n"</span>,name)                                           </span><br><span class="line">                 age                                                                              </span><br><span class="line">           &#125;<span class="keyword">else</span>&#123;                                                                               </span><br><span class="line">                 printf(<span class="string">"Hi,%s,you are a little boy\n"</span>,name)                                        </span><br><span class="line">                 age                                                                             </span><br><span class="line">           &#125;                                                                                </span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<p>单行函数：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sayHi</span></span>(name:<span class="type">String</span>) = print(<span class="string">"Hello,"</span>+name)</span><br></pre></td></tr></table></figure>
+<p>累加功能：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span></span>(n:<span class="type">Int</span>)=&#123;                                                                    </span><br><span class="line">     <span class="keyword">var</span> result = <span class="number">0</span>                                                                    </span><br><span class="line">        <span class="keyword">for</span>(i&lt;<span class="number">-1</span> to n)&#123;                                                                    </span><br><span class="line">           result +=i                                                                      </span><br><span class="line">        &#125;                                                                                 </span><br><span class="line">    result                                                                         </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>递归函数：递归调用函数自身，必须手动给出函数的返回类型<br>斐波那契数列：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fab</span></span>(n:<span class="type">Int</span>):<span class="type">Int</span> = &#123;                                                               </span><br><span class="line">       <span class="keyword">if</span>(n &lt;=<span class="number">0</span>) <span class="number">1</span>                                                                        </span><br><span class="line">            <span class="keyword">else</span> fab(n<span class="number">-1</span>)+fab(n<span class="number">-2</span>)                                                         &#125;</span><br></pre></td></tr></table></figure>
+<p>默认参数：不希望给出参数的具体值，希望使用参数自身默认的值<br>java:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">(String name,<span class="keyword">int</span> age)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(name == <span class="keyword">null</span>)&#123;</span><br><span class="line">        name = <span class="string">"defaultName"</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(age == <span class="number">0</span>)&#123;</span><br><span class="line">        age = <span class="number">18</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>Scala：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sayHello</span></span>(name:<span class="type">String</span>,age:<span class="type">Int</span>=<span class="number">20</span>)&#123;        </span><br><span class="line">        print(<span class="string">"Hello,"</span>+name+<span class="string">",your age is "</span>+age)                                       </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>带名参数：调用函数时，使用带名参数的方式来传递参数，也可以混合使用未命名参数和带名参数。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sayHello(age=<span class="number">23</span>,name=<span class="string">"hi"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sayHello(<span class="string">"leo"</span>,age=<span class="number">23</span>)</span><br></pre></td></tr></table></figure>
+<p>变长参数：需要将函数定义为参数个数可变的形式，则此时可以使用变长参数定义函数</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span></span>(num:<span class="type">Int</span>*)=&#123;                                               </span><br><span class="line">   <span class="keyword">var</span> res = <span class="number">0</span>                                                </span><br><span class="line">   <span class="keyword">for</span>(nums &lt;- num) res+=nums                                </span><br><span class="line">   res                       </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用：sum(1,2,3,4,5)<br>不可以将一个已有的序列直接调用变长参数函数：sum(1 to 5)<br>需要使用Scala特殊的语法将参数定义为序列：sun(1 to 5:_*)<br>案例：使用递归函数实现累加</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum2</span></span>(nums:<span class="type">Int</span>*):<span class="type">Int</span> = &#123;                                      </span><br><span class="line">  <span class="keyword">if</span>(nums.length == <span class="number">0</span>) <span class="number">0</span>                                          </span><br><span class="line">  <span class="keyword">else</span> nums.head + sum2(nums.tail:_*)                            </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>过程：定义函数时，函数体没有使用=连接，则函数的返回值类型为Unit，这样的函数被称为过程，通常用于不需要返回值的函数</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">新的开始</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Spark学习铺垫</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/08/Scala语言学习/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/08/06/hadoop集群搭建（仅主机模式）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">hadoop集群搭建（仅主机模式）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Scala语言学习" data-title="Scala语言学习" data-url="http://yoursite.com/2019/08/08/Scala语言学习/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2019/08/08/Scala语言学习/", 
+    sourceId: "Scala语言学习",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-    
+  
+  <div id="SOHUCS" sid="Scala语言学习"></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js"></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+
+  
+
+  
+
+  
 
 
           </div>
@@ -220,9 +384,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
