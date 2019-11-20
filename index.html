@@ -146,6 +146,68 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Pandas" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h1><h3 id="一、导入数据"><a href="#一、导入数据" class="headerlink" title="一、导入数据"></a>一、导入数据</h3><p>pd.read_csv(r’E:/..csv’,seq=’’,enconding=’’)</p>
+<p>pd.read_table(filename): 从限定分隔符的文本文件导入数据</p>
+<p>pd.read_excel()</p>
+<p>pd.read_sql(query,connection_object):从SQL表/库导入数据</p>
+<p>pd.read_json(json_string):从JSON格式的字符串导入数据<br>pd.read_html(url)：解析URL、字符串或者HTML文件，抽取其中的tables表格<br>pd.read_clipboard()：从你的粘贴板获取内容，并传给read_table()<br>pd.DataFrame(dict)：从字典对象导入数据，Key是列名，Value是数据</p>
+<h3 id="二、导出数据"><a href="#二、导出数据" class="headerlink" title="二、导出数据"></a>二、导出数据</h3><p>df.to_csv(filename)</p>
+<p>df.to_excel(filename)</p>
+<p>df.sql(table_name,connection_object)</p>
+<p>df.to_json(filename)</p>
+<h3 id="三、查看、检查数据"><a href="#三、查看、检查数据" class="headerlink" title="三、查看、检查数据"></a>三、查看、检查数据</h3><p>df.head(n)：查看DataFrame对象的前n行<br>df.tail(n)：查看DataFrame对象的最后n行<br>df.shape()：查看行数和列数<br>http:// df.info() ：查看索引、数据类型和内存信息<br>df.describe()：查看数值型列的汇总统计<br>s.value_counts(dropna=False)：查看Series对象的唯一值和计数<br>df.apply(pd.Series.value_counts)：查看DataFrame对象中每一列的唯一值和计数</p>
+<h3 id="四、数据选取"><a href="#四、数据选取" class="headerlink" title="四、数据选取"></a>四、数据选取</h3><p>df[col]：根据列名，并以Series的形式返回列<br>df[[col1, col2]]：以DataFrame形式返回多列<br>s.iloc[0]：按位置选取数据<br>s.loc[‘index_one’]：按索引选取数据<br>df.iloc[0,:]：返回第一行<br>df.iloc[0,0]：返回第一列的第一个元素</p>
+<h3 id="五、数据清理"><a href="#五、数据清理" class="headerlink" title="五、数据清理"></a>五、数据清理</h3><p>df.columns = [‘a’,’b’,’c’]：重命名列名<br>pd.isnull()：检查DataFrame对象中的空值，并返回一个Boolean数组<br>pd.notnull()：检查DataFrame对象中的非空值，并返回一个Boolean数组<br>df.dropna()：删除所有包含空值的行<br>df.dropna(axis=1)：删除所有包含空值的列<br>df.dropna(axis=1,thresh=n)：删除所有小于n个非空值的行<br>df.fillna(x)：用x替换DataFrame对象中所有的空值<br>s.astype(float)：将Series中的数据类型更改为float类型<br>s.replace(1,’one’)：用‘one’代替所有等于1的值<br>s.replace([1,3],[‘one’,’three’])：用’one’代替1，用’three’代替3<br>df.rename(columns=lambda x: x + 1)：批量更改列名<br>df.rename(columns={‘old_name’: ‘new_ name’})：选择性更改列名<br>df.set_index(‘column_one’)：更改索引列<br>df.rename(index=lambda x: x + 1)：批量重命名索引</p>
+<h3 id="六、数据处理：Filter、Sort和GroupBy"><a href="#六、数据处理：Filter、Sort和GroupBy" class="headerlink" title="六、数据处理：Filter、Sort和GroupBy"></a>六、数据处理：Filter、Sort和GroupBy</h3><p>df[df[col] &gt; 0.5]：选择col列的值大于0.5的行<br>df.sort_values(col1)：按照列col1排序数据，默认升序排列<br>df.sort_values(col2, ascending=False)：按照列col1降序排列数据<br>df.sort_values([col1,col2], ascending=[True,False])：先按列col1升序排列，后按col2降序排列数据<br>df.groupby(col)：返回一个按列col进行分组的Groupby对象<br>df.groupby([col1,col2])：返回一个按多列进行分组的Groupby对象<br>df.groupby(col1)[col2]：返回按列col1进行分组后，列col2的均值<br>df.pivot_table(index=col1, values=[col2,col3], aggfunc=max)：创建一个按列col1进行分组，并计算col2和col3的最大值的数据透视表<br>df.groupby(col1).agg(np.mean)：返回按列col1分组的所有列的均值<br>data.apply(np.mean)：对DataFrame中的每一列应用函数np.mean<br>data.apply(np.max,axis=1)：对DataFrame中的每一行应用函数np.max</p>
+<h3 id="七、数据合并"><a href="#七、数据合并" class="headerlink" title="七、数据合并"></a>七、数据合并</h3><p>df1.append(df2)：将df2中的行添加到df1的尾部<br>df.concat([df1, df2],axis=1)：将df2中的列添加到df1的尾部<br>df1.join(df2,on=col1,how=’inner’)：对df1的列和df2的列执行SQL形式的join</p>
+<h3 id="八、数据统计"><a href="#八、数据统计" class="headerlink" title="八、数据统计"></a>八、数据统计</h3><p>df.describe()：查看数据值列的汇总统计<br>df.mean()：返回所有列的均值<br>df.corr()：返回列与列之间的相关系数<br>df.count()：返回每一列中的非空值的个数<br>df.max()：返回每一列的最大值<br>df.min()：返回每一列的最小值<br>df.median()：返回每一列的中位数<br>df.std()：返回每一列的标准差</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/20/Pandas/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-SSM框架实现简单的增删改查" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -694,11 +756,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端小白</a>
+                <a href="javascript:void(0)" class="js-tag color5">新的开始</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">新的开始</a>
+                <a href="javascript:void(0)" class="js-tag color5">前端小白</a>
               </li>
              
               <li class="article-tag-list-item">

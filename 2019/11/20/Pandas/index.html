@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/5 | 易只瘦鹤的个人博客</title>
+  <title>易只瘦鹤的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Pandas一、导入数据pd.read_csv(r’E:/..csv’,seq=’’,enconding=’’) pd.read_table(filename): 从限定分隔符的文本文件导入数据 pd.read_excel() pd.read_sql(query,connection_object):从SQL表/库导入数据 pd.read_json(json_string):从JSON格式的字符串">
+<meta property="og:type" content="article">
 <meta property="og:title" content="易只瘦鹤的个人博客">
-<meta property="og:url" content="http://yoursite.com/archives/2019/05/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/11/20/Pandas/index.html">
 <meta property="og:site_name" content="易只瘦鹤的个人博客">
+<meta property="og:description" content="Pandas一、导入数据pd.read_csv(r’E:/..csv’,seq=’’,enconding=’’) pd.read_table(filename): 从限定分隔符的文本文件导入数据 pd.read_excel() pd.read_sql(query,connection_object):从SQL表/库导入数据 pd.read_json(json_string):从JSON格式的字符串">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-20T15:38:00.592Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="易只瘦鹤的个人博客">
+<meta name="twitter:description" content="Pandas一、导入数据pd.read_csv(r’E:/..csv’,seq=’’,enconding=’’) pd.read_table(filename): 从限定分隔符的文本文件导入数据 pd.read_excel() pd.read_sql(query,connection_object):从SQL表/库导入数据 pd.read_json(json_string):从JSON格式的字符串">
   
     <link rel="alternative" href="/atom.xml" title="易只瘦鹤的个人博客" type="application/atom+xml">
   
@@ -144,60 +148,175 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Pandas" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h1><h3 id="一、导入数据"><a href="#一、导入数据" class="headerlink" title="一、导入数据"></a>一、导入数据</h3><p>pd.read_csv(r’E:/..csv’,seq=’’,enconding=’’)</p>
+<p>pd.read_table(filename): 从限定分隔符的文本文件导入数据</p>
+<p>pd.read_excel()</p>
+<p>pd.read_sql(query,connection_object):从SQL表/库导入数据</p>
+<p>pd.read_json(json_string):从JSON格式的字符串导入数据<br>pd.read_html(url)：解析URL、字符串或者HTML文件，抽取其中的tables表格<br>pd.read_clipboard()：从你的粘贴板获取内容，并传给read_table()<br>pd.DataFrame(dict)：从字典对象导入数据，Key是列名，Value是数据</p>
+<h3 id="二、导出数据"><a href="#二、导出数据" class="headerlink" title="二、导出数据"></a>二、导出数据</h3><p>df.to_csv(filename)</p>
+<p>df.to_excel(filename)</p>
+<p>df.sql(table_name,connection_object)</p>
+<p>df.to_json(filename)</p>
+<h3 id="三、查看、检查数据"><a href="#三、查看、检查数据" class="headerlink" title="三、查看、检查数据"></a>三、查看、检查数据</h3><p>df.head(n)：查看DataFrame对象的前n行<br>df.tail(n)：查看DataFrame对象的最后n行<br>df.shape()：查看行数和列数<br>http:// df.info() ：查看索引、数据类型和内存信息<br>df.describe()：查看数值型列的汇总统计<br>s.value_counts(dropna=False)：查看Series对象的唯一值和计数<br>df.apply(pd.Series.value_counts)：查看DataFrame对象中每一列的唯一值和计数</p>
+<h3 id="四、数据选取"><a href="#四、数据选取" class="headerlink" title="四、数据选取"></a>四、数据选取</h3><p>df[col]：根据列名，并以Series的形式返回列<br>df[[col1, col2]]：以DataFrame形式返回多列<br>s.iloc[0]：按位置选取数据<br>s.loc[‘index_one’]：按索引选取数据<br>df.iloc[0,:]：返回第一行<br>df.iloc[0,0]：返回第一列的第一个元素</p>
+<h3 id="五、数据清理"><a href="#五、数据清理" class="headerlink" title="五、数据清理"></a>五、数据清理</h3><p>df.columns = [‘a’,’b’,’c’]：重命名列名<br>pd.isnull()：检查DataFrame对象中的空值，并返回一个Boolean数组<br>pd.notnull()：检查DataFrame对象中的非空值，并返回一个Boolean数组<br>df.dropna()：删除所有包含空值的行<br>df.dropna(axis=1)：删除所有包含空值的列<br>df.dropna(axis=1,thresh=n)：删除所有小于n个非空值的行<br>df.fillna(x)：用x替换DataFrame对象中所有的空值<br>s.astype(float)：将Series中的数据类型更改为float类型<br>s.replace(1,’one’)：用‘one’代替所有等于1的值<br>s.replace([1,3],[‘one’,’three’])：用’one’代替1，用’three’代替3<br>df.rename(columns=lambda x: x + 1)：批量更改列名<br>df.rename(columns={‘old_name’: ‘new_ name’})：选择性更改列名<br>df.set_index(‘column_one’)：更改索引列<br>df.rename(index=lambda x: x + 1)：批量重命名索引</p>
+<h3 id="六、数据处理：Filter、Sort和GroupBy"><a href="#六、数据处理：Filter、Sort和GroupBy" class="headerlink" title="六、数据处理：Filter、Sort和GroupBy"></a>六、数据处理：Filter、Sort和GroupBy</h3><p>df[df[col] &gt; 0.5]：选择col列的值大于0.5的行<br>df.sort_values(col1)：按照列col1排序数据，默认升序排列<br>df.sort_values(col2, ascending=False)：按照列col1降序排列数据<br>df.sort_values([col1,col2], ascending=[True,False])：先按列col1升序排列，后按col2降序排列数据<br>df.groupby(col)：返回一个按列col进行分组的Groupby对象<br>df.groupby([col1,col2])：返回一个按多列进行分组的Groupby对象<br>df.groupby(col1)[col2]：返回按列col1进行分组后，列col2的均值<br>df.pivot_table(index=col1, values=[col2,col3], aggfunc=max)：创建一个按列col1进行分组，并计算col2和col3的最大值的数据透视表<br>df.groupby(col1).agg(np.mean)：返回按列col1分组的所有列的均值<br>data.apply(np.mean)：对DataFrame中的每一列应用函数np.mean<br>data.apply(np.max,axis=1)：对DataFrame中的每一行应用函数np.max</p>
+<h3 id="七、数据合并"><a href="#七、数据合并" class="headerlink" title="七、数据合并"></a>七、数据合并</h3><p>df1.append(df2)：将df2中的行添加到df1的尾部<br>df.concat([df1, df2],axis=1)：将df2中的列添加到df1的尾部<br>df1.join(df2,on=col1,how=’inner’)：对df1的列和df2的列执行SQL形式的join</p>
+<h3 id="八、数据统计"><a href="#八、数据统计" class="headerlink" title="八、数据统计"></a>八、数据统计</h3><p>df.describe()：查看数据值列的汇总统计<br>df.mean()：返回所有列的均值<br>df.corr()：返回列与列之间的相关系数<br>df.count()：返回每一列中的非空值的个数<br>df.max()：返回每一列的最大值<br>df.min()：返回每一列的最小值<br>df.median()：返回每一列的中位数<br>df.std()：返回每一列的标准差</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/30/我的第一篇博客/" class="archive-article-date">
-  	<time datetime="2019-05-30T00:43:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/30/我的第一篇博客/">我的第一篇博客</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">新的开始</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
-          
-
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/11/20/Pandas/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/08/15/SSM框架实现简单的增删改查/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SSM框架实现简单的增删改查</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Pandas" data-title data-url="http://yoursite.com/2019/11/20/Pandas/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2019/11/20/Pandas/", 
+    sourceId: "Pandas",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-    
+  
+  <div id="SOHUCS" sid="Pandas"></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js"></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+
+  
+
+  
+
+  
 
 
           </div>
@@ -220,8 +339,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
